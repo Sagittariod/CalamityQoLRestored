@@ -1,0 +1,4 @@
+displayName = Calamity QoL Restored
+author = Sagittariod
+version = 1.0
+modReferences = CalamityMod@2.1

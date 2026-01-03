@@ -1,0 +1,18 @@
+Re-introduces many different features Calamity used to have which gave power to the player through various means.
+
+Up to date with the latest Calamity version.
+
+
+>- Overview -<
+
+- Reintroduced many removed items from various Town NPC shops
+- Restored recipes for a plethora of vanilla items
+- Expert-exclusive drops are once again obtainable on all difficulties
+- The vast majority of weapons in sets dropped by bosses can be shimmered into one another
+- Various item drop rates from enemies are increased
+- Angler quest rewards have been increased substantially
+- Reintroduced removed items from the Starter Bag's former loot pool
+- Reintroduced removed items from the loot pools of multiple Calamity biome crates
+- Fruits drop from trees at an increased rate
+
+Feel free to pitch re-additions you'd like to see in the comment section.
