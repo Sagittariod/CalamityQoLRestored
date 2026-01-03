@@ -18,6 +18,36 @@ namespace CruxMod.Content.CalReferencing
     {
         public override void ModifyShop(NPCShop shop)
         {
+            if (shop.NpcType == NPCID.Merchant)
+            {
+                shop.AddWithCustomValue(ItemID.ArcheryPotion, Item.buyPrice(gold: 3), Condition.DownedEyeOfCthulhu)
+                .AddWithCustomValue(ItemID.TitanPotion, Item.buyPrice(gold: 2), Condition.DownedSkeletron)
+                .AddWithCustomValue(ItemID.ApprenticeBait, Item.buyPrice(silver: 5), Condition.DownedEyeOfCthulhu)
+                .AddWithCustomValue(ItemID.JourneymanBait, Item.buyPrice(silver: 15), Condition.DownedSkeletron)
+                .AddWithCustomValue(ItemID.MasterBait, Item.buyPrice(silver: 50), Condition.DownedPlantera)
+                ;
+            }
+
+            if (shop.NpcType == NPCID.Dryad)
+            {
+                shop.AddWithCustomValue(ItemID.ThornsPotion, Item.buyPrice(gold: 1))
+                .AddWithCustomValue(ItemID.FeatherfallPotion, Item.buyPrice(gold: 1))
+                .AddWithCustomValue(ItemID.RegenerationPotion, Item.buyPrice(gold: 2), Condition.DownedEowOrBoc)
+                .AddWithCustomValue(ItemID.SwiftnessPotion, Item.buyPrice(gold: 3), Condition.DownedEowOrBoc)
+                ;
+            }
+
+            if (shop.NpcType == NPCID.Demolitionist)
+            {
+                shop.AddWithCustomValue(ItemID.MiningPotion, Item.buyPrice(gold: 1), Condition.DownedEyeOfCthulhu)
+                .AddWithCustomValue(ItemID.IronskinPotion, Item.buyPrice(gold: 1), Condition.DownedEyeOfCthulhu)
+                .AddWithCustomValue(ItemID.ShinePotion, Item.buyPrice(gold: 1), Condition.DownedEyeOfCthulhu)
+                .AddWithCustomValue(ItemID.SpelunkerPotion, Item.buyPrice(gold: 2), Condition.DownedEowOrBoc)
+                .AddWithCustomValue(ItemID.ObsidianSkinPotion, Item.buyPrice(gold: 2), Condition.DownedSkeletron)
+                .AddWithCustomValue(ItemID.EndurancePotion, Item.buyPrice(gold: 3), Condition.DownedSkeletron)
+                ;
+            }
+
             if (shop.NpcType == NPCID.ArmsDealer)
             {
                 shop.AddWithCustomValue(ItemID.HunterPotion, Item.buyPrice(gold: 2))
@@ -32,7 +62,7 @@ namespace CruxMod.Content.CalReferencing
             if (shop.NpcType == NPCID.GoblinTinkerer)
             {
                 shop.AddWithCustomValue(ItemID.StinkPotion, Item.buyPrice(gold: 1))
-                .AddWithCustomValue(ItemID.Spaghetti, Item.buyPrice(gold: 5), Condition.DownedSkeletron)
+                //.AddWithCustomValue(ItemID.Spaghetti, Item.buyPrice(gold: 5), Condition.DownedSkeletron)
                 ;
             }
 
@@ -56,6 +86,20 @@ namespace CruxMod.Content.CalReferencing
                 .AddWithCustomValue(ItemID.ShadowbeamStaff, Item.buyPrice(platinum: 1), Condition.DownedGolem)
                 .AddWithCustomValue(ItemID.MagnetSphere, Item.buyPrice(platinum: 1), Condition.DownedGolem)
                 .AddWithCustomValue(ItemID.RodofDiscord, Item.buyPrice(platinum: 20), Condition.InHallow)
+                ;
+            }
+
+            if (shop.NpcType == NPCID.Cyborg)
+            {
+                shop.AddWithCustomValue(ItemID.RocketLauncher, Item.buyPrice(platinum: 1), Condition.DownedGolem)
+                ;
+            }
+
+            if (shop.NpcType == NPCID.PartyGirl)
+            {
+                shop.AddWithCustomValue(ItemID.HeartreachPotion, Item.buyPrice(gold: 2))
+                .AddWithCustomValue(ItemID.LifeforcePotion, Item.buyPrice(gold: 4))
+                .AddWithCustomValue(ItemID.LovePotion, Item.buyPrice(gold: 1))
                 ;
             }
         }
