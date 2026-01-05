@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace EclipsedHeart
+namespace CalamityQoLRestored
 {
     public class CalamityQoLRestoredConfig : ModConfig
     {
@@ -20,20 +20,25 @@ namespace EclipsedHeart
         [DefaultValue(60)]
         public int BarrierCrushDelay { get; set; }
 
-        [Label("Early Loop Spawns")]
-        [Tooltip("Allows elite and lunar enemies to spawn before looping with reduced damage reduction.")]
-        [DefaultValue(0)]
-        public bool EarlyEliteSpawns { get; set; }
+        [Label("Starter Bag Additions")]
+        [Tooltip("Adds back multiple items to the Starter Bag's loot.")]
+        [DefaultValue(1)]
+        public bool StarterBagAdditions { get; set; }
 
-        [Label("Enraged Bosses")]
-        [Tooltip("Bosses attack incredibly often, stacks with Blood Moon.")]
-        [DefaultValue(0)]
-        public bool EnragedBosses { get; set; }
+        [Label("Vanilla Item Recipes")]
+        [Tooltip("Adds recipes for many different uncraftable items. TOGGLING REQUIRES A RESTART TO TAKE EFFECT")]
+        [DefaultValue(1)]
+        public bool VanillaItemRecipes { get; set; }
 
-        [Label("Eclipsed Heart Items")]
-        [Tooltip("Adds brand new items to find in runs! *Requires a restart to take effect*")]
-        [DefaultValue(0)]
-        public bool NewItems { get; set; }
+        [Label("Town NPC Shop Additions")]
+        [Tooltip("Reintroduces many different items to the shops of Town NPCs.")]
+        [DefaultValue(1)]
+        public bool NPCShopChanges { get; set; }
+
+        [Label("Shimmerable Boss Weapon Drops")]
+        [Tooltip("Allows for non-legendary weapons dropped by a boss to be shimmered into one another.")]
+        [DefaultValue(1)]
+        public bool ShimmerCycles { get; set; }
 
     }
 }

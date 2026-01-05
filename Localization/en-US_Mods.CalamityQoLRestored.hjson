@@ -1,1 +1,30 @@
+Configs: {
+	CalamityQoLRestoredConfig: {
+		DisplayName: Calamity Qo L Restored Config
 
+		HealthLossConversionRate: {
+			Label: Health Loss Conversion Rate
+			Tooltip: The percentage of damage taken that is converted into permanent health loss.
+		}
+
+		BarrierCrushDelay: {
+			Label: Barrier Crush Delay
+			Tooltip: The amount of time in ticks it takes for barrier to be regained after damage.
+		}
+
+		VanillaItemRecipes: {
+			Label: Vanilla Item Recipes
+			Tooltip: Adds recipes for many different uncraftable items. TOGGLING REQUIRES A RESTART TO TAKE EFFECT
+		}
+
+		NPCShopChanges: {
+			Label: Town NPC Shop Additions
+			Tooltip: Reintroduces many different items to the shops of Town NPCs.
+		}
+
+		StarterBagAdditions: {
+			Label: Starter Bag Additions
+			Tooltip: Adds back multiple items to the Starter Bag's loot.
+		}
+	}
+}

@@ -6,18 +6,23 @@ using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.TownNPCs;
+using CalamityQoLRestored;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace CruxMod.Content.CalReferencing
+namespace CalamityQolRestored.Content
 {
     public class ModifyGlobalNPC : GlobalNPC
     {
         public override void ModifyShop(NPCShop shop)
         {
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+            if (!config.NPCShopChanges)
+                return;
+
             if (shop.NpcType == NPCID.Merchant)
             {
                 shop.AddWithCustomValue(ItemID.ArcheryPotion, Item.buyPrice(gold: 3), Condition.DownedEyeOfCthulhu)

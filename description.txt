@@ -1,20 +1,25 @@
-Re-introduces many different features Calamity used to have which gave power to the player through various means.
+Re-introduces many different features Calamity used to have which gave power to the player through various means. Up to date with the latest Calamity version.
 
-Up to date with the latest Calamity version.
+Mod icon by SilkyElwyn. 
 
 
 >- Overview -<
 
-- ///// Reintroduced many removed items from various Town NPC shops
+- Reintroduced many removed items from various Town NPC shops
 - Restored recipes for a plethora of vanilla items
+- Reintroduced removed items from the Starter Bag's former loot pool
 - Expert-exclusive drops are once again obtainable on all difficulties
-- The vast majority of weapons in sets dropped by bosses can be shimmered into one another
 - Various item drop rates from enemies are increased
 - Angler quest rewards have been increased substantially
-- Reintroduced removed items from the Starter Bag's former loot pool
 - Reintroduced removed items from the loot pools of multiple Calamity biome crates
 - Fruits drop from trees at an increased rate
 - Rev+ vanilla bosses will enrage instead of despawning when time conditions aren't met
+
+
+This mod also introduces other optional changes not included by Calamity in any iteration which and default to being off. These include:
+
+- Adding the ability for non-legendary weapons dropped by a given boss to be shimmered into one another
+
 
 Feel free to pitch re-additions you'd like to see in the comment section.
 

@@ -16,13 +16,7 @@ namespace CalamityQoLRestored.Content
 {
     public class ModifyRecipes : ModSystem
     {
-        #region ModSystem Hooks
         public override void AddRecipes() => ModifyRecipes.HandleRecipes();
-
-        //public override void AddRecipeGroups() => RecipeSystem.HandleRecipeGroups();
-
-        //public override void PostSetupContent() => RecipeSystem.AddShimmerRecipes();
-        #endregion
 
         #region Recipe Group Definitions
         public static int HardmodeAnvil, HardmodeForge, AnyLargeGem, AnyFood;
@@ -35,6 +29,10 @@ namespace CalamityQoLRestored.Content
 
         public static void HandleRecipes()
         {
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+            if (!config.VanillaItemRecipes)
+                return;
+
             EditVanillaRecipes();
 
             // Black Lens
@@ -99,16 +97,6 @@ namespace CalamityQoLRestored.Content
                 AddIngredient(ItemID.Leather, 2).
                 AddRecipeGroup(AnyEvilPowder, 10).
                 AddTile(TileID.Hellforge).
-                Register().
-                DisableDecraft();
-
-            // Frost Legion recipe for consistency
-            Recipe.Create(ItemID.SnowGlobe).
-                AddRecipeGroup(AnySnowBlock, 10).
-                AddIngredient(ItemID.Glass, 5).
-                AddIngredient(ItemID.SoulofLight, 3).
-                AddIngredient(ItemID.SoulofNight, 3).
-                AddTile(TileID.Anvils).
                 Register().
                 DisableDecraft();
 
@@ -198,12 +186,12 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft(); */
 
-            // Ice Skates
+            /* // Ice Skates
             Recipe.Create(ItemID.IceSkates).
-                AddIngredient(ItemID.Leather, 5).
+                AddIngredient(ItemID.FlinxFur, 3).
                 AddRecipeGroup("IronBar", 5).
                 AddTile(TileID.Anvils).
-                Register();
+                Register(); */
 
             /* // Shiny Red Balloon
             Recipe.Create(ItemID.ShinyRedBalloon).
@@ -292,8 +280,8 @@ namespace CalamityQoLRestored.Content
             // Lihzahrd Power Cell
             Recipe.Create(ItemID.LihzahrdPowerCell).
                 AddIngredient(ItemID.LihzahrdBrick, 5).
-                AddIngredient(ItemID.Ectoplasm, 3).
-                AddIngredient<EssenceofSunlight>(3).
+                AddIngredient(ItemID.Ectoplasm).
+                AddIngredient<EssenceofSunlight>().
                 AddTile(TileID.LihzahrdFurnace).
                 Register().
                 DisableDecraft();
