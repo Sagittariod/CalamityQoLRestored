@@ -26,5 +26,30 @@ Configs: {
 			Label: Starter Bag Additions
 			Tooltip: Adds back multiple items to the Starter Bag's loot.
 		}
+
+		ShimmerCycles: {
+			Label: Shimmerable Boss Weapon Drops
+			Tooltip: Allows for non-legendary weapons dropped by a boss to be shimmered into one another.
+		}
+
+		FruitChanceBuffs: {
+			Label: Fruit Drop Rate Boost
+			Tooltip: Increases the chance for fruits to be dropped from most tree variants.
+		}
+
+		EarlyCosmolight: {
+			Label: Early Cosmolight
+			Tooltip: Allows Cosmolight to be obtainable at the start of Hardmode.
+		}
+
+		EarlyBakidon: {
+			Label: Early Bakidon
+			Tooltip: Allows Bakidon to be obtainable late into pre-Hardmode.
+		}
+
+		CrateAdditions: {
+			Label: Calamity Biome Crate Additions
+			Tooltip: Reintroduces many removed items found within Calamity biome crates.
+		}
 	}
 }

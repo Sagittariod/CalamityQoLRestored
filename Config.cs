@@ -35,10 +35,30 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool NPCShopChanges { get; set; }
 
+        [Label("Calamity Biome Crate Additions")]
+        [Tooltip("Reintroduces many removed items found within Calamity biome crates.")]
+        [DefaultValue(1)]
+        public bool CrateAdditions { get; set; }
+
         [Label("Shimmerable Boss Weapon Drops")]
         [Tooltip("Allows for non-legendary weapons dropped by a boss to be shimmered into one another.")]
-        [DefaultValue(1)]
+        [DefaultValue(0)]
         public bool ShimmerCycles { get; set; }
+
+        [Label("Fruit Drop Rate Boost")]
+        [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]
+        [DefaultValue(1)]
+        public bool FruitChanceBuffs { get; set; }
+
+        [Label("Early Cosmolight")]
+        [Tooltip("Allows Cosmolight to be obtainable at the start of Hardmode.")]
+        [DefaultValue(1)]
+        public bool EarlyCosmolight { get; set; }
+
+        [Label("Early Bakidon")]
+        [Tooltip("Allows Bakidon to be obtainable late into pre-Hardmode.")]
+        [DefaultValue(1)]
+        public bool EarlyBakidon { get; set; }
 
     }
 }

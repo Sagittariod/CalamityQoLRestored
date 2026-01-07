@@ -1,6 +1,6 @@
 Re-introduces many different features Calamity used to have which gave power to the player through various means. Up to date with the latest Calamity version.
 
-Mod icon by SilkyElwyn. 
+Mod icon by Zenovia.
 
 
 >- Overview -<
@@ -13,14 +13,12 @@ Mod icon by SilkyElwyn.
 - Angler quest rewards have been increased substantially
 - Reintroduced removed items from the loot pools of multiple Calamity biome crates
 - Fruits drop from trees at an increased rate
-- Rev+ vanilla bosses will enrage instead of despawning when time conditions aren't met
+- Made Cosmolight obtainable in early hardmode
+
+This mod introduces other optional changes not included by Calamity in any version, all of which default to being off. These are listed below.
+
+- Added the ability for non-legendary weapons dropped by a given boss to be shimmered into one another
+- Added a recipe for Bakidon to be obtainable late into pre-hardmode
 
 
-This mod also introduces other optional changes not included by Calamity in any iteration which and default to being off. These include:
-
-- Adding the ability for non-legendary weapons dropped by a given boss to be shimmered into one another
-
-
-Feel free to pitch re-additions you'd like to see in the comment section.
-
-// TODO: CONFIG FOR REMOVING FOOD ITEMS AGAIN IN PLACE OF BEING SOLD BY NPCs
+Feel free to pitch re-additions you'd like to see!

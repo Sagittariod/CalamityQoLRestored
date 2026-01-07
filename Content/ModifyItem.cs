@@ -1,5 +1,20 @@
 ﻿using CalamityMod;
+using CalamityMod.Items.Accessories;
+using CalamityMod.Items.Critters;
+using CalamityMod.Items.Fishing.AstralCatches;
+using CalamityMod.Items.Fishing.BrimstoneCragCatches;
+using CalamityMod.Items.Fishing.SulphurCatches;
+using CalamityMod.Items.Fishing.SunkenSeaCatches;
+using CalamityMod.Items.Materials;
+using CalamityMod.Items.Pets;
+using CalamityMod.Items.Placeables.Abyss;
+using CalamityMod.Items.Placeables.FurnitureAcidwood;
+using CalamityMod.Items.Placeables.Ores;
+using CalamityMod.Items.Placeables.SunkenSea;
+using CalamityMod.Items.Potions;
 using CalamityMod.Items.Tools;
+using CalamityMod.Items.Tools.ClimateChange;
+using CalamityMod.Items.Tools.SpawnBlocker;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
@@ -7,7 +22,10 @@ using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Items.Weapons.Typeless;
+using CalamityMod.NPCs.Astral;
+using CalamityMod.NPCs.SunkenSea;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +34,66 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using tModPorter;
 
 namespace CalamityQoLRestored.Content
 {
     public class ModifyItem : GlobalItem
     {
+        public static IItemDropRuleCondition PostKS(bool ui = true) => Condition.DownedKingSlime.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostDS(bool ui = true) => CalamityConditions.DownedDesertScourge.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostEoC(bool ui = true) => Condition.DownedEyeOfCthulhu.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostCrab(bool ui = true) => CalamityConditions.DownedCrabulon.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostEvil1(bool ui = true) => Condition.DownedEowOrBoc.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostHM(bool ui = true) => CalamityConditions.DownedHiveMind.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostPerfs(bool ui = true) => CalamityConditions.DownedPerforator.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostEvil2(bool ui = true) => CalamityConditions.DownedHiveMindOrPerforator.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostQB(bool ui = true) => Condition.DownedQueenBee.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostDeer(bool ui = true) => Condition.DownedDeerclops.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostSkele(bool ui = true) => Condition.DownedSkeletron.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostSG(bool ui = true) => CalamityConditions.DownedSlimeGod.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition Hardmode(bool ui = true) => Condition.Hardmode.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostQS(bool ui = true) => Condition.DownedQueenSlime.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostCryo(bool ui = true) => CalamityConditions.DownedCryogen.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostAS(bool ui = true) => CalamityConditions.DownedAquaticScourge.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostBrim(bool ui = true) => CalamityConditions.DownedBrimstoneElemental.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostDest(bool ui = true) => Condition.DownedDestroyer.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostTwins(bool ui = true) => Condition.DownedTwins.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostSP(bool ui = true) => Condition.DownedSkeletronPrime.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition Post1Mechs(bool ui = true) => Condition.DownedMechBossAny.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition Post3Mechs(bool ui = true) => Condition.DownedMechBossAll.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostCal(bool ui = true) => CalamityConditions.DownedCalamitasClone.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostPlant(bool ui = true) => Condition.DownedPlantera.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostCalPlant(bool ui = true) => CalamityConditions.DownedCalamitasCloneOrPlantera.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostLevi(bool ui = true) => CalamityConditions.DownedLeviathan.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostAureus(bool ui = true) => CalamityConditions.DownedAstrumAureus.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostGolem(bool ui = true) => Condition.DownedGolem.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostPBG(bool ui = true) => CalamityConditions.DownedPlaguebringer.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostEoL(bool ui = true) => Condition.DownedEmpressOfLight.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostFish(bool ui = true) => Condition.DownedDukeFishron.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostRav(bool ui = true) => CalamityConditions.DownedRavager.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostLC(bool ui = true) => Condition.DownedCultist.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostAD(bool ui = true) => CalamityConditions.DownedAstrumDeus.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostML(bool ui = true) => Condition.DownedMoonLord.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostGuard(bool ui = true) => CalamityConditions.DownedGuardians.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostBirb(bool ui = true) => CalamityConditions.DownedBumblebird.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostProv(bool ui = true) => CalamityConditions.DownedProvidence.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostSig(bool ui = true) => CalamityConditions.DownedSignus.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostSW(bool ui = true) => CalamityConditions.DownedStormWeaver.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostCV(bool ui = true) => CalamityConditions.DownedCeaselessVoid.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostPolter(bool ui = true) => CalamityConditions.DownedPolterghast.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostOD(bool ui = true) => CalamityConditions.DownedOldDuke.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostDoG(bool ui = true) => CalamityConditions.DownedDevourerOfGods.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostYharon(bool ui = true) => CalamityConditions.DownedYharon.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostExos(bool ui = true) => CalamityConditions.DownedExoMechs.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostSCal(bool ui = true) => CalamityConditions.DownedSupremeCalamitas.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostAEW(bool ui = true) => CalamityConditions.DownedPrimordialWyrm.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostClam(bool ui = true) => CalamityConditions.DownedClam.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostClamHM(bool ui = true) => CalamityConditions.DownedBuffedClam.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostGSS(bool ui = true) => CalamityConditions.DownedGreatSandShark.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostBetsy(bool ui = true) => CalamityConditions.DownedBetsy.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostT1AR(bool ui = true) => CalamityConditions.DownedAcidRainT1.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        public static IItemDropRuleCondition PostT2AR(bool ui = true) => CalamityConditions.DownedAcidRainT2.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
 
         public override void SetStaticDefaults()
         {
@@ -29,9 +102,10 @@ namespace CalamityQoLRestored.Content
 
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
             if (item.type == ModContent.ItemType<StarterBag>())
             {
-                CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
                 if (!config.StarterBagAdditions)
                     return;
 
@@ -42,6 +116,298 @@ namespace CalamityQoLRestored.Content
                 itemLoot.Add(ItemID.ShinePotion, 1, 1, 1);
                 itemLoot.Add(ItemID.Chest, 1, 3, 3);
                 itemLoot.Add(ItemID.Bomb, 1, 10, 10);
+            }
+
+            if (!config.CrateAdditions) // Abandon all hope ye who crater here
+                return;
+
+            // Astral Crate-specific drops
+            if (item.type == ModContent.ItemType<AstralCrate>())
+            {
+                var postAureus = new LeadingConditionRule(PostAureus());
+
+                itemLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<StarblightSoot>()); // Already exists as a rule
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarblightSoot>(), 1, 5, 10));
+
+                IItemDropRule[] weaponPool =
+                {
+                    ItemDropRule.Common(ModContent.ItemType<StellarKnife>()),
+                    ItemDropRule.Common(ModContent.ItemType<AstralachneaStaff>()),
+                    ItemDropRule.Common(ModContent.ItemType<TitanArm>()),
+                    ItemDropRule.Common(ModContent.ItemType<HivePod>()),
+                    ItemDropRule.Common(ModContent.ItemType<AstralScythe>())
+                };
+                var weaponRule = new OneFromRulesRule(10, weaponPool);
+                postAureus.Add(weaponRule);
+
+                IItemDropRule[] orePool =
+                {
+                    ItemDropRule.Common(ModContent.ItemType<AstralOre>(), 1, 10, 20),
+                    ItemDropRule.Common(ItemID.Meteorite, 1, 10, 20)
+                };
+                var oreRule = new OneFromRulesRule(5, orePool);
+                postAureus.Add(oreRule);
+
+                IItemDropRule[] astralPotions =
+                {
+                    ItemDropRule.Common(ModContent.ItemType<GravityNormalizerPotion>(), 1, 1, 3),
+                    ItemDropRule.Common(ModContent.ItemType<AstralInjection>(), 1, 1, 3)
+                };
+                var potionRule = new OneFromRulesRule(10, astralPotions);
+                postAureus.Add(potionRule);
+
+                // Compile all changes into the complete item pool.
+                itemLoot.Add(postAureus);
+            }
+
+            // Evil crate drops
+            if (item.type == ItemID.CorruptFishingCrate || item.type == ItemID.CorruptFishingCrateHard || item.type == ItemID.CrimsonFishingCrate || item.type == ItemID.CrimsonFishingCrateHard)
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlightedGel>(), 5, 5, 8));
+
+            // Dungeon crate drops
+            if (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard)
+            {
+                itemLoot.Add(ItemDropRule.Common(ItemID.Ectoplasm, 3, 5, 10));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Necroplasm>(), 5, 5, 10));
+            }
+
+            // Sunk The In
+            if (item.type == ModContent.ItemType<EutrophicCrate>() || item.type == ModContent.ItemType<PrismCrate>())
+            {
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrismShard>(), 1, 5, 10));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SeaPrism>(), 1, 2, 5));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SeaMinnowItem>(), 5, 1, 3));
+            }
+
+            // Titanium Crate
+            if (item.type == ItemID.GoldenCrateHard)
+                itemLoot.Add(ItemDropRule.ByCondition(PostYharon(), ModContent.ItemType<AuricOre>(), 14, 20, 35));
+
+            // Hallowed Crate drops
+            if (item.type == ItemID.HallowedFishingCrate || item.type == ItemID.HallowedFishingCrateHard)
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnholyEssence>(), 5, 5, 8));
+
+            // Hydrothermic Crate-specific drops
+            if (item.type == ModContent.ItemType<HydrothermalCrate>())
+            {
+                itemLoot.RemoveWhere(rule => rule is OneFromRulesRule pool && pool.options.Any(opt =>
+                    opt is CommonDrop d && d.itemId == ModContent.ItemType<Archerfish>()));
+
+                var postT1Acid = new LeadingConditionRule(PostT1AR());
+                var postT2Acid = new LeadingConditionRule(PostT2AR());
+                var postClone = new LeadingConditionRule(PostCal());
+                var postGolem = new LeadingConditionRule(PostGolem());
+                var postPolter = new LeadingConditionRule(PostPolter());
+
+                postT1Acid.Add(ItemDropRule.Common(ModContent.ItemType<SulphuricScale>(), 10, 1, 3));
+                postT2Acid.Add(ItemDropRule.Common(ModContent.ItemType<CorrodedFossil>(), 10, 1, 3));
+
+                IItemDropRule[] lumenylPool = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ModContent.ItemType<DepthCells>(), 1, 2, 5),
+                    ItemDropRule.Common(ModContent.ItemType<Lumenyl>(), 1, 2, 5),
+                    ItemDropRule.Common(ModContent.ItemType<PlantyMush>(), 1, 2, 5)
+                };
+                postClone.Add(new OneFromRulesRule(5, lumenylPool));
+
+                postGolem.Add(ItemDropRule.Common(ModContent.ItemType<ScoriaOre>(), 5, 16, 28));
+                postGolem.Add(ItemDropRule.Common(ModContent.ItemType<ScoriaBar>(), 15, 4, 7));
+
+                postGolem.Add(ItemDropRule.Common(ModContent.ItemType<ReaperTooth>(), 10, 1, 5));
+
+                var postSkeletron = new LeadingConditionRule(PostSkele());
+
+                IItemDropRule[] abyssEquips = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ModContent.ItemType<StrangeOrb>()),
+                    ItemDropRule.Common(ModContent.ItemType<TorrentialTear>()),
+                    ItemDropRule.Common(ModContent.ItemType<DepthCharm>()),
+                    ItemDropRule.Common(ModContent.ItemType<IronBoots>()),
+                    ItemDropRule.Common(ModContent.ItemType<AnechoicPlating>())
+                };
+                postSkeletron.Add(new OneFromRulesRule(4, abyssEquips));
+
+                IItemDropRule[] abyssWeapons = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ModContent.ItemType<Archerfish>()),
+                    ItemDropRule.Common(ModContent.ItemType<BallOFugu>()),
+                    ItemDropRule.Common(ModContent.ItemType<HerringStaff>()),
+                    ItemDropRule.Common(ModContent.ItemType<Lionfish>()),
+                    ItemDropRule.Common(ModContent.ItemType<BlackAnurian>())
+                };
+                postSkeletron.Add(new OneFromRulesRule(10, abyssWeapons));
+
+                IItemDropRule[] t2AcidDrops = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ModContent.ItemType<SkyfinBombers>()),
+                    ItemDropRule.Common(ModContent.ItemType<NuclearFuelRod>()),
+                    ItemDropRule.Common(ModContent.ItemType<SulphurousGrabber>()),
+                    ItemDropRule.Common(ModContent.ItemType<FlakToxicannon>()),
+                    ItemDropRule.Common(ModContent.ItemType<SpentFuelContainer>()),
+                    ItemDropRule.Common(ModContent.ItemType<SlitheringEels>()),
+                    ItemDropRule.Common(ModContent.ItemType<BelchingSaxophone>())
+                };
+                postT2Acid.Add(new OneFromRulesRule(10, t2AcidDrops));
+
+                IItemDropRule[] hydroPotions = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ItemID.ObsidianSkinPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.SwiftnessPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.IronskinPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.NightOwlPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.ShinePotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.MiningPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.HeartreachPotion, 1, 1, 3),
+                    ItemDropRule.Common(ModContent.ItemType<AnechoicCoating>(), 1, 1, 3),
+                    ItemDropRule.Common(ItemID.TrapsightPotion, 1, 1, 3)
+                };
+                itemLoot.Add(new OneFromRulesRule(10, hydroPotions));
+
+                itemLoot.Add(postT1Acid);
+                itemLoot.Add(postT2Acid);
+                itemLoot.Add(postClone);
+                itemLoot.Add(postGolem);
+                itemLoot.Add(postSkeletron);
+            }
+
+            // Iron Crates
+            if (item.type == ItemID.IronCrate || item.type == ItemID.IronCrateHard)
+            {
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientBoneDust>(), 4, 1, 13));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<WulfrumMetalScrap>(), 4, 2, 5));
+            }
+
+            // Jungle Crates
+            if (item.type == ItemID.JungleFishingCrate || item.type == ItemID.JungleFishingCrateHard)
+            {
+                itemLoot.Add(ItemDropRule.ByCondition(PostPlant(), ModContent.ItemType<PerennialOre>(), 14, 20, 35));
+                itemLoot.Add(ItemDropRule.ByCondition(PostPlant(), ModContent.ItemType<PerennialBar>(), 6, 4, 7));
+
+                itemLoot.Add(ItemDropRule.ByCondition(PostGolem(), ModContent.ItemType<PlagueCellCanister>(), 3, 5, 10));
+
+                itemLoot.Add(ItemDropRule.ByCondition(PostProv(), ModContent.ItemType<UelibloomOre>(), 14, 20, 35));
+                itemLoot.Add(ItemDropRule.ByCondition(PostProv(), ModContent.ItemType<UelibloomBar>(), 6, 4, 7));
+            }
+
+            // Monolith Crates
+            if (item.type == ModContent.ItemType<MonolithCrate>())
+            {
+                itemLoot.Add(ItemDropRule.Common(ItemID.FallenStar, 1, 5, 10));
+                itemLoot.Add(ItemDropRule.Common(ItemID.Meteorite, 5, 10, 20));
+                itemLoot.Add(ItemDropRule.Common(ItemID.MeteoriteBar, 10, 1, 3));
+
+                itemLoot.Add(ItemDropRule.Common(ItemID.Firefly, 3, 1, 1));
+                itemLoot.Add(ItemDropRule.Common(ItemID.MeteoriteBar, 10, 1, 3));
+                itemLoot.Add(ItemDropRule.Common(ItemID.MeteoriteBar, 10, 1, 3));
+
+                IItemDropRule[] rareBaitPool = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ItemID.EnchantedNightcrawler, 1, 1, 3),
+                    ItemDropRule.Common(ModContent.ItemType<TwinklerItem>(), 1, 1, 3),
+                    ItemDropRule.Common(ModContent.ItemType<ArcturusAstroidean>(), 1, 1, 3)
+                };
+
+                itemLoot.Add(new SequentialRulesNotScalingWithLuckRule(
+                    1,
+                    new OneFromRulesRule(3, ItemDropRule.Common(ItemID.Firefly, 1, 1, 3)), // 33.33% Chance
+                    new OneFromRulesRule(5, rareBaitPool) // 20.00% Chance
+                ));
+            }
+
+            if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)
+                itemLoot.Add(ItemDropRule.ByCondition(Hardmode(), ModContent.ItemType<EssenceofHavoc>(), 5, 4, 7));
+
+            if (item.type == ItemID.FloatingIslandFishingCrate || item.type == ItemID.FloatingIslandFishingCrateHard)
+            {
+                itemLoot.Add(ItemDropRule.ByCondition(PostEvil2(), ModContent.ItemType<AerialiteOre>(), 6, 5, 10));
+                itemLoot.Add(ItemDropRule.ByCondition(PostEvil2(), ModContent.ItemType<AerialiteBar>(), 14, 4, 7));
+                itemLoot.Add(ItemDropRule.ByCondition(Hardmode(), ModContent.ItemType<EssenceofSunlight>(), 5, 4, 7));
+                itemLoot.Add(ItemDropRule.ByCondition(PostML(), ModContent.ItemType<ExodiumCluster>(), 2, 25, 50));
+            }
+
+            if (item.type == ModContent.ItemType<SlagCrate>() || item.type == ModContent.ItemType<BrimstoneCrate>())
+            {
+                IItemDropRule[] ech = new IItemDropRule[]
+                {
+                    ItemDropRule.Common(ItemID.Hellstone, 4, 2, 5),
+                    ItemDropRule.Common(ItemID.Obsidian, 1, 2, 5),
+                };
+                itemLoot.Add(new OneFromRulesRule(1, ech));
+
+                ItemDropRule.Common(ItemID.HellstoneBar, 10, 1, 3);
+            }
+
+            if (item.type == ModContent.ItemType<BrimstoneCrate>())
+            {
+                IItemDropRule[] ech = new IItemDropRule[]
+                {
+                    ItemDropRule.Common(ModContent.ItemType<UnholyCore>(), 10, 1, 3),
+                    ItemDropRule.Common(ModContent.ItemType<Bloodstone>(), 2, 1, 3),
+                };
+                itemLoot.Add(new OneFromRulesRule(1, ech));
+            }
+
+            if (item.type == ModContent.ItemType<SulphurousCrate>())
+            {
+                itemLoot.RemoveWhere(rule => rule is OneFromRulesRule pool && pool.options.Any(opt =>
+                    opt is CommonDrop d && d.itemId == ModContent.ItemType<BrokenWaterFilter>()));
+
+                itemLoot.RemoveWhere(rule => rule is OneFromRulesRule pool && pool.options.Any(opt =>
+                    opt is CommonDrop d && d.itemId == ModContent.ItemType<SulphurousSand>()));
+
+                itemLoot.RemoveWhere(rule => rule is OneFromRulesRule pool && pool.options.Any(opt =>
+                    opt is CommonDrop d && d.itemId == ModContent.ItemType<Archerfish>()));
+
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Acidwood>(), 1, 5, 10));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SulphurousSand>(), 1, 5, 10));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SulphurousSandstone>(), 1, 5, 10));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<HardenedSulphurousSandstone>(), 1, 5, 10));
+
+                var postT1Acid = new LeadingConditionRule(PostT1AR());
+                postT1Acid.Add(ItemDropRule.Common(ModContent.ItemType<SulphuricScale>(), 10, 1, 3));
+                itemLoot.Add(postT1Acid);
+
+                var postSkeletron = new LeadingConditionRule(PostSkele());
+
+                IItemDropRule[] abyssEquips = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ModContent.ItemType<StrangeOrb>()),
+                    ItemDropRule.Common(ModContent.ItemType<TorrentialTear>()),
+                    ItemDropRule.Common(ModContent.ItemType<DepthCharm>()),
+                    ItemDropRule.Common(ModContent.ItemType<IronBoots>()),
+                    ItemDropRule.Common(ModContent.ItemType<AnechoicPlating>())
+                };
+                postSkeletron.Add(new OneFromRulesRule(4, abyssEquips));
+
+                IItemDropRule[] abyssWeapons = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ModContent.ItemType<Archerfish>()),
+                    ItemDropRule.Common(ModContent.ItemType<BallOFugu>()),
+                    ItemDropRule.Common(ModContent.ItemType<HerringStaff>()),
+                    ItemDropRule.Common(ModContent.ItemType<Lionfish>()),
+                    ItemDropRule.Common(ModContent.ItemType<BlackAnurian>())
+                };
+                postSkeletron.Add(new OneFromRulesRule(10, abyssWeapons));
+                itemLoot.Add(postSkeletron);
+
+                IItemDropRule[] sulphurousPotions = new IItemDropRule[] 
+                {
+                    ItemDropRule.Common(ItemID.ObsidianSkinPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.SwiftnessPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.IronskinPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.NightOwlPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.ShinePotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.MiningPotion, 1, 1, 3),
+                    ItemDropRule.Common(ItemID.HeartreachPotion, 1, 1, 3),
+                    ItemDropRule.Common(ModContent.ItemType<AnechoicCoating>(), 1, 1, 3),
+                    ItemDropRule.Common(ItemID.TrapsightPotion, 1, 1, 3)
+                };
+                itemLoot.Add(new OneFromRulesRule(10, sulphurousPotions));
+            }
+
+            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
+            {
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<WulfrumMetalScrap>(), 5, 5, 10));
             }
         }
 
@@ -302,28 +668,6 @@ namespace CalamityQoLRestored.Content
             // Signus
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<CosmicKunai>()] = ModContent.ItemType<Cosmilamp>();
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<Cosmilamp>()] = ModContent.ItemType<CosmicKunai>();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 }

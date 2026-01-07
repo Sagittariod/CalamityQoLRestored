@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Materials;
+using CalamityMod.Items.Tools.ClimateChange;
 using CalamityMod.Systems;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,29 @@ namespace CalamityQoLRestored.Content
         public static void HandleRecipes()
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+            if (config.EarlyCosmolight)
+            {
+                Recipe.Create(ItemType<Cosmolight>()).
+                AddIngredient(ItemID.FallenStar, 10).
+                AddIngredient(ItemID.SoulofLight, 7).
+                AddIngredient(ItemID.SoulofNight, 7).
+                AddIngredient(ItemType<EssenceofSunlight>(), 5).
+                AddTile(TileID.Anvils).
+                Register();
+            }
+
+            if (config.EarlyBakidon)
+            {
+                Recipe.Create(ItemType<Bakidon>()).
+                AddIngredient(ItemID.FallenStar, 5).
+                AddIngredient(ItemID.HellstoneBar, 5).
+                AddTile(TileID.Hellforge).
+                Register();
+            }
+
+
+
+
             if (!config.VanillaItemRecipes)
                 return;
 
