@@ -5,20 +5,19 @@ Mod icon by Zenovia.
 
 >- Overview -<
 
-- Reintroduced many removed items from various Town NPC shops
-- Restored recipes for a plethora of vanilla items
 - Reintroduced removed items from the Starter Bag's former loot pool
-- Expert-exclusive drops are once again obtainable on all difficulties
-- Various item drop rates from enemies are increased
-- Angler quest rewards have been increased substantially
+- Restored recipes for a plethora of vanilla items
+- Reintroduced many removed items from various Town NPC shops
 - Reintroduced removed items from the loot pools of multiple Calamity biome crates
+- Various item drop rates from enemies are increased
+- Expert-exclusive drops are once again available in all difficulties
 - Fruits drop from trees at an increased rate
 - Made Cosmolight obtainable in early hardmode
 
-This mod introduces other optional changes not included by Calamity in any version, all of which default to being off. These are listed below.
+This mod introduces other optional changes not included by Calamity in any version, all of which default to being off. These are listed below:
 
-- Added the ability for non-legendary weapons dropped by a given boss to be shimmered into one another
 - Added a recipe for Bakidon to be obtainable late into pre-hardmode
+- Added the ability for non-legendary weapons dropped by a given boss to be shimmered into one another
 
 
-Feel free to pitch re-additions you'd like to see!
+Feel free to pitch other re-additions you'd like to see!

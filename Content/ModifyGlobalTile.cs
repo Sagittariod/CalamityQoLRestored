@@ -25,9 +25,10 @@ namespace CalamityQoLRestored.Content
 {
     public class ModifyGlobalTile : GlobalTile
     {
+        CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
         public override void PreShakeTree(int x, int y, TreeTypes treeType)
         {
-            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
             if (!config.FruitChanceBuffs)
                 return;
 
