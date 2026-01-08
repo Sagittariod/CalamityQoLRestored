@@ -334,6 +334,10 @@ namespace CalamityQolRestored.Content
 
         ExpertReversionZone:
 
+            if (!config.ExpertGatekeepRemoval)
+                return;
+
+
             void RevertExpertGating(int itemId)
             {
                 // Remove existing drop rule

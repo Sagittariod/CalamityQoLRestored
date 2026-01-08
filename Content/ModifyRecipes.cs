@@ -31,6 +31,7 @@ namespace CalamityQoLRestored.Content
         public static void HandleRecipes()
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
             if (config.EarlyCosmolight)
             {
                 Recipe.Create(ItemType<Cosmolight>()).
@@ -50,8 +51,6 @@ namespace CalamityQoLRestored.Content
                 AddTile(TileID.Hellforge).
                 Register();
             }
-
-
 
 
             if (!config.VanillaItemRecipes)
