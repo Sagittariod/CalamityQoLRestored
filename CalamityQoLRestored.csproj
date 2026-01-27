@@ -12,6 +12,9 @@
 	    <HintPath>..\ModAssemblies\CalamityMod_v2.1.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Localization\" />
+	</ItemGroup>
 
 	<!-- References -->
 

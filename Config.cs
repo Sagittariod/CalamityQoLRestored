@@ -48,6 +48,9 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool EarlyCosmolight { get; set; }
 
+
+        [Header("New Additions")]
+
         [Label("Early Bakidon")]
         [Tooltip("Allows Bakidon to be obtainable late into pre-Hardmode. Toggling may require a restart to take effect!")]
         [DefaultValue(0)]
