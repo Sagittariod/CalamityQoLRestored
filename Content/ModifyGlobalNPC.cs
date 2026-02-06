@@ -51,12 +51,38 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace CalamityQolRestored.Content
 {
     public class ModifyGlobalNPC : GlobalNPC
     {
+        // Logic for re-implementing Calamity's alternate method of obtaining a Golden Fishing Rod
+        internal const float TrasherEatDistance = 96f;
+        public static readonly Condition TrasherTextCondition = new Condition(
+            Language.GetOrRegister("Mods.CalamityMod.Condition.Drops.TrasherKill"),
+            () => true
+        );
+
+        public static readonly IItemDropRuleCondition AnglerFedToTrasherCondition = new DelegateCondition((info) =>
+        {
+            foreach (NPC nearby in Main.ActiveNPCs)
+            {
+                // Check if the nearby NPC is a Trasher
+                if (nearby.type == ModContent.NPCType<Trasher>())
+                {
+                    if (info.npc.Distance(nearby.Center) < TrasherEatDistance)
+                        return true;
+                }
+            }
+            return false;
+        });
+
+        // The text is a separate rule so it doesn't show up on the non-Trasher Fishing Rod drop which only occurs if the Angler is not fed to a Trasher
+        public static IItemDropRuleCondition TrasherText => TrasherTextCondition.ToDropCondition(ShowItemDropInUI.Always);
+
+
         public override void ModifyShop(NPCShop shop)
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
@@ -152,10 +178,22 @@ namespace CalamityQolRestored.Content
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
+            if (!config.AlternateGoldenFishingRodObtainmentMethod)
+                goto EnemyDropChangeZone; // Skip this section.
+
+            if (npc.type == NPCID.Angler)
+            {
+                LeadingConditionRule trasherLCR = new LeadingConditionRule(AnglerFedToTrasherCondition);
+                trasherLCR.Add(ItemDropRule.ByCondition(TrasherText, ItemID.GoldenFishingRod));
+                npcLoot.Add(trasherLCR);
+            }
+
+
+        EnemyDropChangeZone:
+
             if (!config.EnemyDropRateChanges)
                 goto ExpertReversionZone; // Skip this section.
-
-
 
             // Reverting all astral enemy weapon drop rates to be 14.29% (from 10%)
             if (npc.type == ModContent.NPCType<Aries>())
@@ -495,5 +533,17 @@ namespace CalamityQolRestored.Content
                 }
             }
         }
+    }
+
+    // Replicated from Calamity's DropHelper class for re-implementing the special Golden Fishing Rod obtainment condition
+    public class DelegateCondition(Func<DropAttemptInfo, bool> condition) : IItemDropRuleCondition
+    {
+        private readonly Func<DropAttemptInfo, bool> condition = condition;
+
+        public bool CanDrop(DropAttemptInfo info) => condition(info);
+
+        public bool CanShowItemDropInUI() => true;
+
+        public string GetConditionDescription() => null;
     }
 }

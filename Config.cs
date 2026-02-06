@@ -38,6 +38,11 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool ExpertGatekeepRemoval { get; set; }
 
+        [Label("Alternate Golden Fishing Rod Obtainment Method")]
+        [Tooltip("Reintroduces a special interaction with the Angler which allows for obtaining a Golden Fishing Rod consistently.")]
+        [DefaultValue(1)]
+        public bool AlternateGoldenFishingRodObtainmentMethod { get; set; }
+
         [Label("Fruit Drop Rate Boost")]
         [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]
         [DefaultValue(1)]
@@ -49,7 +54,7 @@ namespace CalamityQoLRestored
         public bool EarlyCosmolight { get; set; }
 
 
-        [Header("New Additions")]
+        [Header("$Mods.CalamityQoLRestored.Configs.CalamityQoLRestoredConfig.NewAdditionsHeader")]
 
         [Label("Early Bakidon")]
         [Tooltip("Allows Bakidon to be obtainable late into pre-Hardmode. Toggling may require a restart to take effect!")]
