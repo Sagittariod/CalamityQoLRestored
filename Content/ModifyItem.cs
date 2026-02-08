@@ -12,6 +12,8 @@ using CalamityMod.Items.Placeables.FurnitureAcidwood;
 using CalamityMod.Items.Placeables.Ores;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.Potions;
+using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod.Items.SummonItems.Invasion;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Tools.ClimateChange;
 using CalamityMod.Items.Tools.SpawnBlocker;
@@ -34,12 +36,12 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using tModPorter;
 
 namespace CalamityQoLRestored.Content
 {
     public class ModifyItem : GlobalItem
     {
+        #region Boss Drop Rule Initialization
         public static IItemDropRuleCondition PostKS(bool ui = true) => Condition.DownedKingSlime.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
         public static IItemDropRuleCondition PostDS(bool ui = true) => CalamityConditions.DownedDesertScourge.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
         public static IItemDropRuleCondition PostEoC(bool ui = true) => Condition.DownedEyeOfCthulhu.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
@@ -94,10 +96,34 @@ namespace CalamityQoLRestored.Content
         public static IItemDropRuleCondition PostBetsy(bool ui = true) => CalamityConditions.DownedBetsy.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
         public static IItemDropRuleCondition PostT1AR(bool ui = true) => CalamityConditions.DownedAcidRainT1.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
         public static IItemDropRuleCondition PostT2AR(bool ui = true) => CalamityConditions.DownedAcidRainT2.ToDropCondition(ui ? ShowItemDropInUI.Always : ShowItemDropInUI.Never);
+        #endregion
 
         public override void SetStaticDefaults()
         {
             SetStaticDefaults_ShimmerRecipes();
+        }
+
+        public override void SetDefaults(Item item) // Makes vanilla event items non-consumable.
+        {
+            if (item.type == ItemID.BloodMoonStarter || item.type == ItemID.GoblinBattleStandard ||
+                item.type == ItemID.PirateMap || item.type == ItemID.SnowGlobe ||
+                item.type == ItemID.NaughtyPresent || item.type == ItemID.PumpkinMoonMedallion ||
+                item.type == ItemID.SolarTablet || item.type == ModContent.ItemType<CausticTear>() || item.type == ModContent.ItemType<MartianDistressRemote>())
+            {
+                item.consumable = false;
+                item.maxStack = 1;
+            }
+
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            ModifyVanillaTooltips(item, tooltips);
+
+            if (item.type == ModContent.ItemType<CausticTear>() || item.type == ModContent.ItemType<MartianDistressRemote>())
+            {
+                tooltips.Add(new TooltipLine(Mod, "ExternalTooltip", CalamityUtils.GetTextValue("Common.NotConsumable")));
+            }
         }
 
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
@@ -202,7 +228,7 @@ namespace CalamityQoLRestored.Content
                 postT1Acid.Add(ItemDropRule.Common(ModContent.ItemType<SulphuricScale>(), 10, 1, 3));
                 postT2Acid.Add(ItemDropRule.Common(ModContent.ItemType<CorrodedFossil>(), 10, 1, 3));
 
-                IItemDropRule[] lumenylPool = new IItemDropRule[] 
+                IItemDropRule[] lumenylPool = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ModContent.ItemType<DepthCells>(), 1, 2, 5),
                     ItemDropRule.Common(ModContent.ItemType<Lumenyl>(), 1, 2, 5),
@@ -217,7 +243,7 @@ namespace CalamityQoLRestored.Content
 
                 var postSkeletron = new LeadingConditionRule(PostSkele());
 
-                IItemDropRule[] abyssEquips = new IItemDropRule[] 
+                IItemDropRule[] abyssEquips = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ModContent.ItemType<StrangeOrb>()),
                     ItemDropRule.Common(ModContent.ItemType<TorrentialTear>()),
@@ -227,7 +253,7 @@ namespace CalamityQoLRestored.Content
                 };
                 postSkeletron.Add(new OneFromRulesRule(4, abyssEquips));
 
-                IItemDropRule[] abyssWeapons = new IItemDropRule[] 
+                IItemDropRule[] abyssWeapons = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ModContent.ItemType<Archerfish>()),
                     ItemDropRule.Common(ModContent.ItemType<BallOFugu>()),
@@ -237,7 +263,7 @@ namespace CalamityQoLRestored.Content
                 };
                 postSkeletron.Add(new OneFromRulesRule(10, abyssWeapons));
 
-                IItemDropRule[] t2AcidDrops = new IItemDropRule[] 
+                IItemDropRule[] t2AcidDrops = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ModContent.ItemType<SkyfinBombers>()),
                     ItemDropRule.Common(ModContent.ItemType<NuclearFuelRod>()),
@@ -249,7 +275,7 @@ namespace CalamityQoLRestored.Content
                 };
                 postT2Acid.Add(new OneFromRulesRule(10, t2AcidDrops));
 
-                IItemDropRule[] hydroPotions = new IItemDropRule[] 
+                IItemDropRule[] hydroPotions = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ItemID.ObsidianSkinPotion, 1, 1, 3),
                     ItemDropRule.Common(ItemID.SwiftnessPotion, 1, 1, 3),
@@ -300,7 +326,7 @@ namespace CalamityQoLRestored.Content
                 itemLoot.Add(ItemDropRule.Common(ItemID.MeteoriteBar, 10, 1, 3));
                 itemLoot.Add(ItemDropRule.Common(ItemID.MeteoriteBar, 10, 1, 3));
 
-                IItemDropRule[] rareBaitPool = new IItemDropRule[] 
+                IItemDropRule[] rareBaitPool = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ItemID.EnchantedNightcrawler, 1, 1, 3),
                     ItemDropRule.Common(ModContent.ItemType<TwinklerItem>(), 1, 1, 3),
@@ -369,7 +395,7 @@ namespace CalamityQoLRestored.Content
 
                 var postSkeletron = new LeadingConditionRule(PostSkele());
 
-                IItemDropRule[] abyssEquips = new IItemDropRule[] 
+                IItemDropRule[] abyssEquips = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ModContent.ItemType<StrangeOrb>()),
                     ItemDropRule.Common(ModContent.ItemType<TorrentialTear>()),
@@ -379,7 +405,7 @@ namespace CalamityQoLRestored.Content
                 };
                 postSkeletron.Add(new OneFromRulesRule(4, abyssEquips));
 
-                IItemDropRule[] abyssWeapons = new IItemDropRule[] 
+                IItemDropRule[] abyssWeapons = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ModContent.ItemType<Archerfish>()),
                     ItemDropRule.Common(ModContent.ItemType<BallOFugu>()),
@@ -390,7 +416,7 @@ namespace CalamityQoLRestored.Content
                 postSkeletron.Add(new OneFromRulesRule(10, abyssWeapons));
                 itemLoot.Add(postSkeletron);
 
-                IItemDropRule[] sulphurousPotions = new IItemDropRule[] 
+                IItemDropRule[] sulphurousPotions = new IItemDropRule[]
                 {
                     ItemDropRule.Common(ItemID.ObsidianSkinPotion, 1, 1, 3),
                     ItemDropRule.Common(ItemID.SwiftnessPotion, 1, 1, 3),
@@ -668,6 +694,58 @@ namespace CalamityQoLRestored.Content
             // Signus
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<CosmicKunai>()] = ModContent.ItemType<Cosmilamp>();
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<Cosmilamp>()] = ModContent.ItemType<CosmicKunai>();
+        }
+
+        // Effectively directly from Calamity's source. Most are left unused for now, but are set in the instance that they are needed for later.
+        public static void ModifyVanillaTooltips(Item item, IList<TooltipLine> tooltips)
+        {
+            // This is a modular tooltip editor which loops over all tooltip lines of an item,
+            // selects all those which match an arbitrary function you provide,
+            // then edits them using another arbitrary function you provide.
+            void ApplyTooltipEdits(IList<TooltipLine> lines, Func<Item, TooltipLine, bool> predicate, Action<TooltipLine> action)
+            {
+                foreach (TooltipLine line in lines)
+                    if (predicate.Invoke(item, line))
+                        action.Invoke(line);
+            }
+
+            // This function produces simple predicates to match a specific line of a tooltip, by number/index.
+            Func<Item, TooltipLine, bool> LineNum(int n) => (Item i, TooltipLine l) => l.Mod == "Terraria" && l.Name == $"Tooltip{n}";
+            // This function produces simple predicates to match a specific line of a tooltip, by name.
+            Func<Item, TooltipLine, bool> LineName(string s) => (Item i, TooltipLine l) => l.Mod == "Terraria" && l.Name == s;
+
+            // These functions are shorthand to invoke ApplyTooltipEdits using the above predicates.
+            void EditTooltipByNum(int lineNum, Action<TooltipLine> action) => ApplyTooltipEdits(tooltips, LineNum(lineNum), action);
+
+            /* void EditTooltipByName(string lineName, Action<TooltipLine> action) => ApplyTooltipEdits(tooltips, LineName(lineName), action);
+            string EditedTooltip(string key) => CalamityUtils.GetTextValue($"Vanilla.EditedTooltip.{key}");
+            LocalizedText GetEditedTooltip(string key) => CalamityUtils.GetText($"Vanilla.EditedTooltip.{key}");
+
+            // For items such as a Copper Helmet which literally have no tooltips at all, add a custom "Tooltip0" which mimics the vanilla Tooltip0.
+            void AddTooltip(string key)
+            {
+                // Don't add the tooltip if the item is in a social slot
+                if (item.social)
+                    return;
+
+                int defenseIndex = -1;
+                for (int i = 0; i < tooltips.Count; ++i)
+                    if (tooltips[i].Name == "Defense")
+                    {
+                        defenseIndex = i;
+                        break;
+                    }
+                tooltips.Insert(defenseIndex + 1, new TooltipLine(ModContent.GetInstance<CalamityMod.CalamityMod>(), "Tooltip0", CalamityUtils.GetTextValue($"Vanilla.AddedTooltip.{key}"))); // may be janded
+            }
+
+            string AddedTooltip(string key) => "\n" + CalamityUtils.GetTextValue($"Vanilla.AddedTooltip.{key}");
+            LocalizedText GetAddedTooltip(string key) => CalamityUtils.GetText($"Vanilla.AddedTooltip.{key}"); */
+
+
+            if (item.type == ItemID.BloodMoonStarter || item.type == ItemID.GoblinBattleStandard ||
+               item.type == ItemID.PirateMap || item.type == ItemID.SnowGlobe || item.type == ItemID.NaughtyPresent || item.type == ItemID.PumpkinMoonMedallion ||
+               item.type == ItemID.SolarTablet || item.type == ItemID.SolarTablet)
+                EditTooltipByNum(0, (line) => line.Text += "\n" + CalamityUtils.GetTextValue("Common.NotConsumable"));
         }
     }
 }

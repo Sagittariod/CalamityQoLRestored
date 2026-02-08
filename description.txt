@@ -10,6 +10,7 @@ Mod icon by Zenovia.
 - Reintroduced many removed items from various Town NPC shops
 - Reintroduced removed items from the loot pools of multiple Calamity biome crates
 - Various item drop rates from enemies are increased
+- Made event items non-consumable
 - Expert-exclusive drops are once again available in all difficulties
 - Reintroduced a special interaction with the Angler which allowed for obtaining a Golden Fishing Rod consistently
 - Fruits drop from trees at an increased rate

@@ -474,7 +474,12 @@ namespace CalamityQolRestored.Content
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
-                        RevertExpertGating(ItemID.WormScarf);
+                        LeadingConditionRule eowDeathRule = new LeadingConditionRule(new Conditions.LegacyHack_IsABoss());
+
+                        npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ItemID.WormScarf);
+
+                        eowDeathRule.OnSuccess(ItemDropRule.Common(ItemID.WormScarf));
+                        npcLoot.Add(eowDeathRule);
                         break;
 
                     case NPCID.BrainofCthulhu:
