@@ -1,1 +1,24 @@
-This description will show up on the steam page, check out https://steamcommunity.com/comment/Guide/formattinghelp.
+Re-introduces many different features Calamity used to have which gave power to the player through various means. All Quality of Life features are to date with the latest Calamity version.
+
+Mod icon by Zenovia.
+
+
+>- Overview -<
+
+- Reintroduced removed items from the Starter Bag's former loot pool
+- Restored recipes for a plethora of vanilla items
+- Reintroduced many removed items from various Town NPC shops
+- Reintroduced removed items from the loot pools of multiple Calamity biome crates
+- Various item drop rates from enemies are increased
+- Expert-exclusive drops are once again available in all difficulties
+- Reintroduced a special interaction with the Angler which allowed for obtaining a Golden Fishing Rod consistently
+- Fruits drop from trees at an increased rate
+- Made Cosmolight obtainable in early hardmode
+
+This mod introduces other optional changes not included by Calamity in any version, all of which default to being off. These are listed below:
+
+- Added a recipe for Bakidon to be obtainable late into pre-hardmode
+- Added the ability for non-legendary weapons dropped by a given boss to be shimmered into one another
+
+
+Feel free to pitch other re-additions you'd like to see!

@@ -285,9 +285,7 @@ namespace CalamityQolRestored.Content
                 npc.type == NPCID.GigaZapper ||
                 npc.type == NPCID.GrayGrunt ||
                 npc.type == NPCID.RayGunner ||
-                npc.type == NPCID.ScutlixRider ||
-                npc.type == NPCID.GreenJellyfish ||
-                npc.type == NPCID.PinkJellyfish)
+                npc.type == NPCID.ScutlixRider)
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<DoomsdayDevice>());
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DoomsdayDevice>(), 50));
