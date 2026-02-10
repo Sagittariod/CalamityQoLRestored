@@ -1,4 +1,4 @@
-Re-introduces many different features Calamity used to have which gave power to the player through various means. All Quality of Life features are to date with the latest Calamity version.
+Re-introduces many different features Calamity used to have which gave power to the player through various means. All Quality of Life features are configurable and up to date with the latest Calamity version.
 
 Mod icon by Zenovia.
 
