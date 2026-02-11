@@ -48,6 +48,11 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool AlternateTerraprismaObtainmentMethod { get; set; }
 
+        [Label("Angling Kit Additions")]
+        [Tooltip("Reintroduces Angling Kits and adds them to the loot pools of some bosses. Toggling may require a restart to take effect!")]
+        [DefaultValue(1)]
+        public bool AnglingKitsRestored { get; set; }
+
         [Label("Fruit Drop Rate Boost")]
         [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]
         [DefaultValue(1)]

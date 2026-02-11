@@ -46,6 +46,7 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using CalamityMod.NPCs.Yharon;
 using CalamityQoLRestored;
+using CalamityQoLRestored.Content.Items;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -184,7 +185,7 @@ namespace CalamityQolRestored.Content
 
             if (npc.type == NPCID.HallowBoss)
             {
-                npcLoot.Add(ItemDropRule.Common(ItemID.EmpressBlade, 3));
+                npcLoot.Add(ItemDropRule.Common(ItemID.EmpressBlade, 3)); // 1 in 3 chance, separate from any other loot tables.
             }
 
 
@@ -204,7 +205,7 @@ namespace CalamityQolRestored.Content
         EnemyDropChangeZone:
 
             if (!config.EnemyDropRateChanges)
-                goto ExpertReversionZone; // Skip this section.
+                goto AnglingKitZone; // Skip this section.
 
             // Reverting all astral enemy weapon drop rates to be 14.29% (from 10%)
             if (npc.type == ModContent.NPCType<Aries>())
@@ -377,12 +378,26 @@ namespace CalamityQolRestored.Content
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodOrb>(), 1));
             }
 
+        AnglingKitZone:
+
+            if (!config.ExpertGatekeepRemoval)
+                goto ExpertReversionZone;
+
+            if (npc.type == ModContent.NPCType<DesertScourgeHead>())
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SandyAnglingKit>(), 1));
+            }
+
+            if (npc.type == ModContent.NPCType<AquaticScourgeHead>())
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BleachedAnglingKit>(), 1));
+            }
+
 
         ExpertReversionZone:
 
             if (!config.ExpertGatekeepRemoval)
                 return;
-
 
             void RevertExpertGating(int itemId)
             {

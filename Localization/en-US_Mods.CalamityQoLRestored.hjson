@@ -58,5 +58,38 @@ Configs: {
 			Label: Shimmerable Boss Weapon Drops
 			Tooltip: Allows for non-legendary weapons dropped by a boss to be shimmered into one another. Toggling may require a restart to take effect!
 		}
+
+		AlternateTerraprismaObtainmentMethod: {
+			Label: Alternate Terraprisma Obtainment Method
+			Tooltip: Reintroduces Terraprisma as a normal drop in Empress of Light's weapon loot pool. Toggling may require a restart to take effect!
+		}
+
+		AnglingKitsRestored: {
+			Label: Angling Kit Additions
+			Tooltip: Reintroduces Angling Kits and adds them to the loot pools of some bosses. Toggling may require a restart to take effect!
+		}
+	}
+}
+
+
+Items: {
+	TreasureBags: {
+		BleachedAnglingKit: {
+			DisplayName: Bleached Angling Kit
+			Tooltip: 
+				'''
+				Has a chance to contain various fishing gear
+				{$CommonItemTooltip.RightClickToOpen}
+				'''		
+		}
+
+		SandyAnglingKit: {
+			DisplayName: Sandy Angling Kit
+			Tooltip: 
+				'''
+				Has a chance to contain various fishing gear
+				{$CommonItemTooltip.RightClickToOpen}
+				'''
+		}
 	}
 }

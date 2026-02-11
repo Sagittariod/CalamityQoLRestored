@@ -130,11 +130,8 @@ namespace CalamityQoLRestored.Content
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
 
-            if (item.type == ModContent.ItemType<StarterBag>())
+            if (item.type == ModContent.ItemType<StarterBag>() && config.StarterBagAdditions)
             {
-                if (!config.StarterBagAdditions)
-                    return;
-
                 itemLoot.Add(ItemID.MiningPotion, 1, 1, 1);
                 itemLoot.Add(ItemID.SpelunkerPotion, 1, 2, 2);
                 itemLoot.Add(ItemID.SwiftnessPotion, 1, 3, 3);
