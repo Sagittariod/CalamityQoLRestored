@@ -43,6 +43,11 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool AlternateGoldenFishingRodObtainmentMethod { get; set; }
 
+        [Label("Alternate Terraprisma Obtainment Method")]
+        [Tooltip("Reintroduces Terraprisma as a normal drop in Empress of Light's weapon loot pool. Toggling may require a restart to take effect!")]
+        [DefaultValue(1)]
+        public bool AlternateTerraprismaObtainmentMethod { get; set; }
+
         [Label("Fruit Drop Rate Boost")]
         [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]
         [DefaultValue(1)]

@@ -507,6 +507,20 @@ namespace CalamityQoLRestored.Content
             ItemID.Sets.ShimmerTransformToItem[ItemID.SparkleGuitar] = ItemID.RainbowWhip;
             ItemID.Sets.ShimmerTransformToItem[ItemID.RainbowWhip] = ItemID.PiercingStarlight;
 
+            // Empress of Light shimmer cycle if you want terraprisma too
+            if (!config.AlternateTerraprismaObtainmentMethod)
+                goto SkipToMoonLordDrops;
+
+            ItemID.Sets.ShimmerTransformToItem[ItemID.EmpressBlade] = ItemID.FairyQueenRangedItem;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.FairyQueenRangedItem] = ItemID.FairyQueenMagicItem;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.FairyQueenMagicItem] = ItemID.SparkleGuitar;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.SparkleGuitar] = ItemID.RainbowWhip;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.RainbowWhip] = ItemID.PiercingStarlight;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.PiercingStarlight] = ItemID.EmpressBlade;
+
+
+        SkipToMoonLordDrops:
+
             // Moon Lord
             ItemID.Sets.ShimmerTransformToItem[ItemID.Meowmere] = ItemID.StarWrath;
             ItemID.Sets.ShimmerTransformToItem[ItemID.StarWrath] = ItemID.Terrarian;

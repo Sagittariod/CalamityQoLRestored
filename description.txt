@@ -13,6 +13,7 @@ Mod icon by Zenovia.
 - Made event items non-consumable
 - Expert-exclusive drops are once again available in all difficulties
 - Reintroduced a special interaction with the Angler which allowed for obtaining a Golden Fishing Rod consistently
+- Reintroduced Terraprisma to Empress of Light's common weapon drop pool
 - Fruits drop from trees at an increased rate
 - Made Cosmolight obtainable in early hardmode
 

@@ -169,7 +169,7 @@ namespace CalamityQolRestored.Content
             if (shop.NpcType == NPCID.PartyGirl)
             {
                 shop.AddWithCustomValue(ItemID.HeartreachPotion, Item.buyPrice(gold: 2))
-                .AddWithCustomValue(ItemID.LifeforcePotion, Item.buyPrice(gold: 4))
+                .AddWithCustomValue(ItemID.LifeforcePotion, Item.buyPrice(gold: 4), Condition.Hardmode)
                 .AddWithCustomValue(ItemID.LovePotion, Item.buyPrice(gold: 1))
                 ;
             }
@@ -178,6 +178,17 @@ namespace CalamityQolRestored.Content
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
+            if (!config.AlternateTerraprismaObtainmentMethod)
+                goto GoldenFishingRodSection; // Skip this section.
+
+            if (npc.type == NPCID.HallowBoss)
+            {
+                npcLoot.Add(ItemDropRule.Common(ItemID.EmpressBlade, 3));
+            }
+
+
+        GoldenFishingRodSection:
 
             if (!config.AlternateGoldenFishingRodObtainmentMethod)
                 goto EnemyDropChangeZone; // Skip this section.
@@ -365,7 +376,6 @@ namespace CalamityQolRestored.Content
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<BloodOrb>());
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodOrb>(), 1));
             }
-
 
 
         ExpertReversionZone:
