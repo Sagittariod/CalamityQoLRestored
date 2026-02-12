@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -40,7 +41,8 @@ namespace CalamityQoLRestored.Content
                 AddIngredient(ItemID.SoulofNight, 7).
                 AddIngredient(ItemType<EssenceofSunlight>(), 5).
                 AddTile(TileID.Anvils).
-                Register();
+                Register().
+                AddDecraftCondition(CalamityConditions.DownedAstrumDeus);
             }
 
             if (config.EarlyBakidon)
@@ -49,7 +51,8 @@ namespace CalamityQoLRestored.Content
                 AddIngredient(ItemID.FallenStar, 5).
                 AddIngredient(ItemID.HellstoneBar, 5).
                 AddTile(TileID.Hellforge).
-                Register();
+                Register().
+                AddDecraftCondition(Condition.Hardmode);
             }
 
 

@@ -24,7 +24,12 @@ Configs: {
 
 		EnemyDropRateChanges: {
 			Label: Enemy Drop Rate Boost
-			Tooltip: Reverts reductions to many different item drop rates.
+			Tooltip: Reverts reductions to many different item drop rates. Toggling may require a restart to take effect!
+		}
+
+		NonConsumableEventSummons: {
+			Label: Non-consumable Event Summoning Items
+			Tooltip: Makes items which summon events non-consumable. Toggling may require a restart to take effect!
 		}
 
 		ExpertGatekeepRemoval: {
@@ -34,7 +39,22 @@ Configs: {
 
 		AlternateGoldenFishingRodObtainmentMethod: {
 			Label: Alternate Golden Fishing Rod Obtainment Method
-			Tooltip: Reintroduces a special interaction with the Angler. Toggling may require a restart to take effect!
+			Tooltip: Reintroduces a special interaction with the Angler which allows for obtaining a Golden Fishing Rod consistently.
+		}
+
+		AlternateTerraprismaObtainmentMethod: {
+			Label: Alternate Terraprisma Obtainment Method
+			Tooltip: Reintroduces Terraprisma as a normal drop in Empress of Light's weapon loot pool. Toggling may require a restart to take effect!
+		}
+
+		AnglingKitsRestored: {
+			Label: Angling Kit Additions
+			Tooltip: Reintroduces Angling Kits and adds them to the loot pools of some bosses. Toggling may require a restart to take effect!
+		}
+
+		ReaverSharkReturns: {
+			Label: Reaver Shark Pickaxe Power Boost
+			Tooltip: Increases Reaver Shark's pickaxe power. Toggling may require a restart to take effect!
 		}
 
 		FruitChanceBuffs: {
@@ -58,34 +78,23 @@ Configs: {
 			Label: Shimmerable Boss Weapon Drops
 			Tooltip: Allows for non-legendary weapons dropped by a boss to be shimmered into one another. Toggling may require a restart to take effect!
 		}
-
-		AlternateTerraprismaObtainmentMethod: {
-			Label: Alternate Terraprisma Obtainment Method
-			Tooltip: Reintroduces Terraprisma as a normal drop in Empress of Light's weapon loot pool. Toggling may require a restart to take effect!
-		}
-
-		AnglingKitsRestored: {
-			Label: Angling Kit Additions
-			Tooltip: Reintroduces Angling Kits and adds them to the loot pools of some bosses. Toggling may require a restart to take effect!
-		}
 	}
 }
-
 
 Items: {
 	TreasureBags: {
 		BleachedAnglingKit: {
 			DisplayName: Bleached Angling Kit
-			Tooltip: 
+			Tooltip:
 				'''
 				Has a chance to contain various fishing gear
 				{$CommonItemTooltip.RightClickToOpen}
-				'''		
+				'''
 		}
 
 		SandyAnglingKit: {
 			DisplayName: Sandy Angling Kit
-			Tooltip: 
+			Tooltip:
 				'''
 				Has a chance to contain various fishing gear
 				{$CommonItemTooltip.RightClickToOpen}

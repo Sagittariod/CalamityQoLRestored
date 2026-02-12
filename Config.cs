@@ -29,9 +29,14 @@ namespace CalamityQoLRestored
         public bool CrateAdditions { get; set; }
 
         [Label("Enemy Drop Rate Boost")]
-        [Tooltip("Reverts reductions to many different item drop rates.")]
+        [Tooltip("Reverts reductions to many different item drop rates. Toggling may require a restart to take effect!")]
         [DefaultValue(1)]
         public bool EnemyDropRateChanges { get; set; }
+
+        [Label("Non-consumable Event Summoning Items")]
+        [Tooltip("Makes items which summon events non-consumable. Toggling may require a restart to take effect!")]
+        [DefaultValue(1)]
+        public bool NonConsumableEventSummons { get; set; }
 
         [Label("Universal Expert Item Drops")]
         [Tooltip("Allows expert-exclusive items to be available in Normal mode. Toggling may require a restart to take effect!")]
@@ -52,6 +57,11 @@ namespace CalamityQoLRestored
         [Tooltip("Reintroduces Angling Kits and adds them to the loot pools of some bosses. Toggling may require a restart to take effect!")]
         [DefaultValue(1)]
         public bool AnglingKitsRestored { get; set; }
+
+        [Label("Reaver Shark Pickaxe Power Boost")]
+        [Tooltip("Increases Reaver Shark's pickaxe power. Toggling may require a restart to take effect!")]
+        [DefaultValue(1)]
+        public bool ReaverSharkReturns { get; set; }
 
         [Label("Fruit Drop Rate Boost")]
         [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]

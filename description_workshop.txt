@@ -10,12 +10,13 @@ Mod icon by Zenovia.
 - Reintroduced many removed items from various Town NPC shops
 - Reintroduced removed items from the loot pools of multiple Calamity biome crates
 - Various item drop rates from enemies are increased
-- Made event items non-consumable
+- Made event items once again non-consumable
 - Expert-exclusive drops are once again available in all difficulties
 - Reintroduced a special interaction with the Angler which allowed for obtaining a Golden Fishing Rod consistently
 - Reintroduced Terraprisma to Empress of Light's common weapon drop pool
 - Reintroduced Angling Kits
-- Fruits drop from trees at an increased rate
+- Made Reaver Shark once again have increased pickaxe power
+- Increased the drop rate of fruits from trees
 - Made Cosmolight obtainable in early hardmode
 
 This mod introduces other optional changes not included by Calamity in any version, all of which default to being off. These are listed below:

@@ -36,6 +36,10 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CalamityMod.Balancing;
+using CalamityMod.Items.PermanentBoosters;
+using CalamityMod.Physics;
+using Microsoft.Xna.Framework;
 
 namespace CalamityQoLRestored.Content
 {
@@ -105,22 +109,30 @@ namespace CalamityQoLRestored.Content
 
         public override void SetDefaults(Item item) // Makes vanilla event items non-consumable.
         {
-            if (item.type == ItemID.BloodMoonStarter || item.type == ItemID.GoblinBattleStandard ||
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
+            if (config.NonConsumableEventSummons && (item.type == ItemID.BloodMoonStarter || item.type == ItemID.GoblinBattleStandard ||
                 item.type == ItemID.PirateMap || item.type == ItemID.SnowGlobe ||
                 item.type == ItemID.NaughtyPresent || item.type == ItemID.PumpkinMoonMedallion ||
-                item.type == ItemID.SolarTablet || item.type == ModContent.ItemType<CausticTear>() || item.type == ModContent.ItemType<MartianDistressRemote>())
+                item.type == ItemID.SolarTablet || item.type == ModContent.ItemType<CausticTear>() || item.type == ModContent.ItemType<MartianDistressRemote>()))
             {
                 item.consumable = false;
                 item.maxStack = 1;
+            }
+
+            if (config.ReaverSharkReturns && item.type == ItemID.ReaverShark)
+            {
+                item.pick = 65;
             }
 
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
             ModifyVanillaTooltips(item, tooltips);
 
-            if (item.type == ModContent.ItemType<CausticTear>() || item.type == ModContent.ItemType<MartianDistressRemote>())
+            if (config.NonConsumableEventSummons && (item.type == ModContent.ItemType<CausticTear>() || item.type == ModContent.ItemType<MartianDistressRemote>()))
             {
                 tooltips.Add(new TooltipLine(Mod, "ExternalTooltip", CalamityUtils.GetTextValue("Common.NotConsumable")));
             }
@@ -190,8 +202,8 @@ namespace CalamityQoLRestored.Content
             // Dungeon crate drops
             if (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard)
             {
-                itemLoot.Add(ItemDropRule.Common(ItemID.Ectoplasm, 3, 5, 10));
-                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Necroplasm>(), 5, 5, 10));
+                itemLoot.Add(ItemDropRule.ByCondition(PostPlant(), ItemID.Ectoplasm, 3, 5, 10));
+                itemLoot.Add(ItemDropRule.ByCondition(PostPolter(), ModContent.ItemType<Necroplasm>(), 5, 5, 10));
             }
 
             // Sunk The In
@@ -208,7 +220,7 @@ namespace CalamityQoLRestored.Content
 
             // Hallowed Crate drops
             if (item.type == ItemID.HallowedFishingCrate || item.type == ItemID.HallowedFishingCrateHard)
-                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnholyEssence>(), 5, 5, 8));
+                itemLoot.Add(ItemDropRule.ByCondition(PostML(), ModContent.ItemType<UnholyEssence>(), 5, 5, 8));
 
             // Hydrothermic Crate-specific drops
             if (item.type == ModContent.ItemType<HydrothermalCrate>())
@@ -364,8 +376,8 @@ namespace CalamityQoLRestored.Content
             {
                 IItemDropRule[] ech = new IItemDropRule[]
                 {
-                    ItemDropRule.Common(ModContent.ItemType<UnholyCore>(), 10, 1, 3),
-                    ItemDropRule.Common(ModContent.ItemType<Bloodstone>(), 2, 1, 3),
+                    ItemDropRule.ByCondition(PostProv(), ModContent.ItemType<UnholyCore>(), 10, 1, 3),
+                    ItemDropRule.ByCondition(PostProv(), ModContent.ItemType<Bloodstone>(), 2, 1, 3),
                 };
                 itemLoot.Add(new OneFromRulesRule(1, ech));
             }
@@ -404,11 +416,11 @@ namespace CalamityQoLRestored.Content
 
                 IItemDropRule[] abyssWeapons = new IItemDropRule[]
                 {
-                    ItemDropRule.Common(ModContent.ItemType<Archerfish>()),
-                    ItemDropRule.Common(ModContent.ItemType<BallOFugu>()),
-                    ItemDropRule.Common(ModContent.ItemType<HerringStaff>()),
-                    ItemDropRule.Common(ModContent.ItemType<Lionfish>()),
-                    ItemDropRule.Common(ModContent.ItemType<BlackAnurian>())
+                    ItemDropRule.ByCondition(PostSkele(), ModContent.ItemType<Archerfish>()),
+                    ItemDropRule.ByCondition(PostSkele(), ModContent.ItemType<BallOFugu>()),
+                    ItemDropRule.ByCondition(PostSkele(), ModContent.ItemType<HerringStaff>()),
+                    ItemDropRule.ByCondition(PostSkele(), ModContent.ItemType<Lionfish>()),
+                    ItemDropRule.ByCondition(PostSkele(), ModContent.ItemType<BlackAnurian>())
                 };
                 postSkeletron.Add(new OneFromRulesRule(10, abyssWeapons));
                 itemLoot.Add(postSkeletron);
@@ -505,18 +517,15 @@ namespace CalamityQoLRestored.Content
             ItemID.Sets.ShimmerTransformToItem[ItemID.RainbowWhip] = ItemID.PiercingStarlight;
 
             // Empress of Light shimmer cycle if you want terraprisma too
-            if (!config.AlternateTerraprismaObtainmentMethod)
-                goto SkipToMoonLordDrops;
-
-            ItemID.Sets.ShimmerTransformToItem[ItemID.EmpressBlade] = ItemID.FairyQueenRangedItem;
-            ItemID.Sets.ShimmerTransformToItem[ItemID.FairyQueenRangedItem] = ItemID.FairyQueenMagicItem;
-            ItemID.Sets.ShimmerTransformToItem[ItemID.FairyQueenMagicItem] = ItemID.SparkleGuitar;
-            ItemID.Sets.ShimmerTransformToItem[ItemID.SparkleGuitar] = ItemID.RainbowWhip;
-            ItemID.Sets.ShimmerTransformToItem[ItemID.RainbowWhip] = ItemID.PiercingStarlight;
-            ItemID.Sets.ShimmerTransformToItem[ItemID.PiercingStarlight] = ItemID.EmpressBlade;
-
-
-        SkipToMoonLordDrops:
+            if (config.AlternateTerraprismaObtainmentMethod)
+            {
+                ItemID.Sets.ShimmerTransformToItem[ItemID.EmpressBlade] = ItemID.FairyQueenRangedItem;
+                ItemID.Sets.ShimmerTransformToItem[ItemID.FairyQueenRangedItem] = ItemID.FairyQueenMagicItem;
+                ItemID.Sets.ShimmerTransformToItem[ItemID.FairyQueenMagicItem] = ItemID.SparkleGuitar;
+                ItemID.Sets.ShimmerTransformToItem[ItemID.SparkleGuitar] = ItemID.RainbowWhip;
+                ItemID.Sets.ShimmerTransformToItem[ItemID.RainbowWhip] = ItemID.PiercingStarlight;
+                ItemID.Sets.ShimmerTransformToItem[ItemID.PiercingStarlight] = ItemID.EmpressBlade;
+            }
 
             // Moon Lord
             ItemID.Sets.ShimmerTransformToItem[ItemID.Meowmere] = ItemID.StarWrath;
@@ -710,6 +719,8 @@ namespace CalamityQoLRestored.Content
         // Effectively directly from Calamity's source. Most are left unused for now, but are set in the instance that they are needed for later.
         public static void ModifyVanillaTooltips(Item item, IList<TooltipLine> tooltips)
         {
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
             // This is a modular tooltip editor which loops over all tooltip lines of an item,
             // selects all those which match an arbitrary function you provide,
             // then edits them using another arbitrary function you provide.
@@ -723,7 +734,7 @@ namespace CalamityQoLRestored.Content
             // This function produces simple predicates to match a specific line of a tooltip, by number/index.
             Func<Item, TooltipLine, bool> LineNum(int n) => (Item i, TooltipLine l) => l.Mod == "Terraria" && l.Name == $"Tooltip{n}";
             // This function produces simple predicates to match a specific line of a tooltip, by name.
-            Func<Item, TooltipLine, bool> LineName(string s) => (Item i, TooltipLine l) => l.Mod == "Terraria" && l.Name == s;
+            // Func<Item, TooltipLine, bool> LineName(string s) => (Item i, TooltipLine l) => l.Mod == "Terraria" && l.Name == s;
 
             // These functions are shorthand to invoke ApplyTooltipEdits using the above predicates.
             void EditTooltipByNum(int lineNum, Action<TooltipLine> action) => ApplyTooltipEdits(tooltips, LineNum(lineNum), action);
@@ -752,11 +763,12 @@ namespace CalamityQoLRestored.Content
             string AddedTooltip(string key) => "\n" + CalamityUtils.GetTextValue($"Vanilla.AddedTooltip.{key}");
             LocalizedText GetAddedTooltip(string key) => CalamityUtils.GetText($"Vanilla.AddedTooltip.{key}"); */
 
-
-            if (item.type == ItemID.BloodMoonStarter || item.type == ItemID.GoblinBattleStandard ||
+            if (config.NonConsumableEventSummons && (item.type == ItemID.BloodMoonStarter || item.type == ItemID.GoblinBattleStandard ||
                item.type == ItemID.PirateMap || item.type == ItemID.SnowGlobe || item.type == ItemID.NaughtyPresent || item.type == ItemID.PumpkinMoonMedallion ||
-               item.type == ItemID.SolarTablet || item.type == ItemID.SolarTablet)
+               item.type == ItemID.SolarTablet || item.type == ItemID.SolarTablet))
+            {
                 EditTooltipByNum(0, (line) => line.Text += "\n" + CalamityUtils.GetTextValue("Common.NotConsumable"));
+            }
         }
     }
 }
