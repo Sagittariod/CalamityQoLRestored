@@ -380,8 +380,8 @@ namespace CalamityQolRestored.Content
 
         AnglingKitZone:
 
-            if (!config.ExpertGatekeepRemoval)
-                goto ExpertReversionZone;
+            if (!config.AnglingKitsRestored)
+                goto ExpertReversionZone; // Skip this section.
 
             if (npc.type == ModContent.NPCType<DesertScourgeHead>())
             {
