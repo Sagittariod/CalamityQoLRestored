@@ -57,6 +57,11 @@ Configs: {
 			Tooltip: Increases Reaver Shark's pickaxe power. Toggling may require a restart to take effect!
 		}
 
+		AnkhIntoValor: {
+			Label: Debuff Immunities in Shield Accessories
+			Tooltip: Integrates Ankh Shield's effects into Asgard's Valor and its upgrades. Toggling may require a restart to take effect!
+		}
+
 		FruitChanceBuffs: {
 			Label: Fruit Drop Rate Boost
 			Tooltip: Increases the chance for fruits to be dropped from most tree variants.

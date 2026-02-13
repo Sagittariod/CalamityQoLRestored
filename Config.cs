@@ -63,6 +63,11 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool ReaverSharkReturns { get; set; }
 
+        [Label("Debuff Immunities in Shield Accessories")]
+        [Tooltip("Integrates Ankh Shield's effects into Asgard's Valor and its upgrades, alongside re-adding cold immunities to Ornate Shield.")]
+        [DefaultValue(1)]
+        public bool AnkhIntoValor { get; set; }
+
         [Label("Fruit Drop Rate Boost")]
         [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]
         [DefaultValue(1)]

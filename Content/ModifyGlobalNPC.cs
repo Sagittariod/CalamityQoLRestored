@@ -54,6 +54,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace CalamityQolRestored.Content
 {
@@ -403,8 +404,8 @@ namespace CalamityQolRestored.Content
             {
                 // Remove existing drop rule
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == itemId);
-                // Add back as a standard drop obtainable regardless of difficulty
-                npcLoot.Add(ItemDropRule.Common(itemId));
+                var normalOnly = npcLoot.DefineNormalOnlyDropSet();
+                normalOnly.Add(itemId);
             }
 
             // Apparently can't use modcontent for switch cases so this is what we have to work with

@@ -1,4 +1,9 @@
 ﻿using CalamityMod;
+using CalamityMod.Balancing;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Buffs.StatDebuffs;
+using CalamityMod.CalPlayer;
+using CalamityMod.CalPlayer.Dashes;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Critters;
 using CalamityMod.Items.Fishing.AstralCatches;
@@ -6,6 +11,7 @@ using CalamityMod.Items.Fishing.BrimstoneCragCatches;
 using CalamityMod.Items.Fishing.SulphurCatches;
 using CalamityMod.Items.Fishing.SunkenSeaCatches;
 using CalamityMod.Items.Materials;
+using CalamityMod.Items.PermanentBoosters;
 using CalamityMod.Items.Pets;
 using CalamityMod.Items.Placeables.Abyss;
 using CalamityMod.Items.Placeables.FurnitureAcidwood;
@@ -26,9 +32,13 @@ using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Items.Weapons.Typeless;
 using CalamityMod.NPCs.Astral;
 using CalamityMod.NPCs.SunkenSea;
+using CalamityMod.Physics;
+using Humanizer;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,10 +46,6 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Balancing;
-using CalamityMod.Items.PermanentBoosters;
-using CalamityMod.Physics;
-using Microsoft.Xna.Framework;
 
 namespace CalamityQoLRestored.Content
 {
@@ -138,6 +144,65 @@ namespace CalamityQoLRestored.Content
             }
         }
 
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            CalamityPlayer modPlayer = player.Calamity();
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
+
+            if (config.AnkhIntoValor && (modPlayer.DashID == AsgardsValorDash.ID || modPlayer.DashID == AsgardianAegisDash.ID || player.Calamity().DashID == OrnateShieldDash.ID))
+            {
+                // Asgard's Valor, Asgardian Aegis, Elysian Aegis
+                if (!(modPlayer.DashID == OrnateShieldDash.ID))
+                {
+                    player.buffImmune[BuffID.Weak] = true;
+                    player.buffImmune[BuffID.BrokenArmor] = true;
+                    player.buffImmune[BuffID.Bleeding] = true;
+                    player.buffImmune[BuffID.Poisoned] = true;
+                    player.buffImmune[BuffID.Slow] = true;
+                    player.buffImmune[BuffID.Confused] = true;
+                    player.buffImmune[BuffID.Silenced] = true;
+                    player.buffImmune[BuffID.Cursed] = true;
+                    player.buffImmune[BuffID.Darkness] = true;
+                    player.buffImmune[BuffID.WindPushed] = true;
+                    player.buffImmune[BuffID.Stoned] = true;
+                    player.buffImmune[BuffID.OnFire] = true;
+                    player.buffImmune[BuffID.OnFire3] = true;
+                    player.buffImmune[ModContent.BuffType<BrimstoneFlames>()] = true;
+                }
+
+                // Elysian Aegis, Asgardian Aegis
+                if (modPlayer.DashID == ElysianAegisDash.ID || modPlayer.DashID == AsgardianAegisDash.ID)
+                {
+                    player.buffImmune[ModContent.BuffType<Daybroken>()] = true;
+                    player.buffImmune[ModContent.BuffType<HolyFlames>()] = true;
+                }
+
+                // Only immunities accessible to ornate shield
+                player.buffImmune[BuffID.Chilled] = true;
+                player.buffImmune[BuffID.Frozen] = true;
+                player.buffImmune[BuffID.Frostburn] = true;
+                player.buffImmune[BuffID.Frostburn2] = true;
+
+                // Asgardian Aegis
+                if (modPlayer.DashID == AsgardianAegisDash.ID && !(player.Calamity().DashID == OrnateShieldDash.ID))
+                {
+                    player.buffImmune[ModContent.BuffType<ArmorCrunch>()] = true; // "Stronger" Broken Armor
+                    player.buffImmune[ModContent.BuffType<BrainRot>()] = true; // Counterpart to Burning Blood
+                    player.buffImmune[ModContent.BuffType<BurningBlood>()] = true; // "Stronger" Bleeding
+                    player.buffImmune[ModContent.BuffType<HeavyBleeding>()] = true;
+                    player.buffImmune[ModContent.BuffType<Laceration>()] = true;
+                    player.buffImmune[BuffID.Venom] = true; // "Stronger" Poisoned
+                    player.buffImmune[ModContent.BuffType<SulphuricPoisoning>()] = true; // "Stronger" Poisoned
+                    player.buffImmune[BuffID.Webbed] = true; // "Stronger" Slow
+                    player.buffImmune[BuffID.Blackout] = true; // "Stronger" Darkness
+                    player.buffImmune[ModContent.BuffType<Nightwither>()] = true;
+                    player.buffImmune[ModContent.BuffType<Voidfrost>()] = true;
+                }
+            }
+
+
+        }
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
@@ -540,8 +605,6 @@ namespace CalamityQoLRestored.Content
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<UtensilPoker>()] = ItemID.Meowmere;
 
 
-
-
             // Slime God
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<AbyssalTome>()] = ModContent.ItemType<EldritchTome>();
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<EldritchTome>()] = ModContent.ItemType<CorroslimeStaff>();
@@ -769,6 +832,36 @@ namespace CalamityQoLRestored.Content
             {
                 EditTooltipByNum(0, (line) => line.Text += "\n" + CalamityUtils.GetTextValue("Common.NotConsumable"));
             }
+
+
+            if (config.AnkhIntoValor)
+            {
+                if (item.type == ModContent.ItemType<OrnateShield>())
+                    EditTooltipByNum(1, (line) => line.Text += "\n" + "Grants immunity to Chilled, Frostburn, Frostbite, and Frozen");
+                if (item.type == ModContent.ItemType<ElysianAegis>())
+                {
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Grants immunity to fire blocks, On Fire!, Hellfire, Cursed Inferno,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Shadowflame, Brimstone Flames, Daybroken, and Holy Flames");
+                }
+                if (item.type == ModContent.ItemType<AsgardsValor>())
+                {
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Grants immunity to fire blocks, On Fire!, Hellfire, Chilled,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Frozen, Frostbite, Weak, Broken Armor, Bleeding, Poisoned,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Slow, Confused, Silenced, Cursed, Darkness, Mighty Wind,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Stoned, Brimstone Flames, and Burning");
+                }
+                if (item.type == ModContent.ItemType<AsgardianAegis>())
+                {
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Grants immunity to fire blocks, On Fire!, Hellfire, Burning,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Chilled, Frozen, Frostburn, Frostbite, Weak, Broken Armor,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Bleeding, Poisoned, Acid Venom, Sulphuric Poisoning, Slow, Confused,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Silenced, Cursed, Darkness, Webbed, Mighty Wind, Stoned, Armor Crunch,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Blackout, Brain Rot, Burning Blood, Heavy Bleeding, Laceration,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Cursed Inferno, Brimstone Flames, Shadowflame, Daybroken, Nightwither,");
+                    EditTooltipByNum(2, (line) => line.Text += "\n" + "Holy Flames, Voidfrost, and God Slayer Inferno");
+                }
+            }
+
         }
     }
 }
