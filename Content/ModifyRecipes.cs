@@ -198,6 +198,14 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft();
 
+            // DPS Meter
+            Recipe.Create(ItemID.DPSMeter).
+                AddIngredient(ItemID.Wire, 10).
+                AddIngredient(ItemID.GoldBar, 5).
+                AddTile(TileID.Anvils).
+                Register().
+                DisableDecraft();
+
             /* // Umbrella
             Recipe.Create(ItemID.Umbrella).
                 AddIngredient(ItemID.Silk, 5).

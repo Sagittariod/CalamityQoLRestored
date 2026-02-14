@@ -128,7 +128,7 @@ namespace CalamityQoLRestored.Content
 
             if (config.ReaverSharkReturns && item.type == ItemID.ReaverShark)
             {
-                item.pick = 65;
+                item.pick = 100;
             }
 
         }
