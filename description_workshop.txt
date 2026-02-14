@@ -16,6 +16,7 @@ Mod icon by Zenovia.
 - Reintroduced Terraprisma to Empress of Light's common weapon drop pool
 - Reintroduced Angling Kits
 - Made Reaver Shark once again have increased pickaxe power
+- Made Ankh Charm used in the Asgard's Valor recipe and returned debuff immunities to shields in its line
 - Increased the drop rate of fruits from trees
 - Made Cosmolight obtainable in early hardmode
 

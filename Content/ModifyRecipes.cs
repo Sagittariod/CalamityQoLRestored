@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Tools.ClimateChange;
 using CalamityMod.Systems;
@@ -379,6 +380,19 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft();
 
+        }
+
+        public override void PostAddRecipes()
+        {
+            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+
+            foreach (Recipe recipe in Main.recipe)
+            {
+                if (recipe.createItem.type == ModContent.ItemType<AsgardsValor>() && config.AnkhIntoValor)
+                {
+                    recipe.AddIngredient(ItemID.AnkhShield);
+                }
+            }
         }
 
         internal static void EditVanillaRecipes()
