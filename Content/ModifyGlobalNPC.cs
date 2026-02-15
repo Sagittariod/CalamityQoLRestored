@@ -517,8 +517,11 @@ namespace CalamityQolRestored.Content
                         break;
 
                     case NPCID.SkeletronHead:
-                        RevertExpertGating(ItemID.BoneHelm);
                         RevertExpertGating(ItemID.BoneGlove);
+                        break;
+
+                    case NPCID.Deerclops:
+                        RevertExpertGating(ItemID.BoneHelm);
                         break;
 
                     case NPCID.WallofFlesh:
