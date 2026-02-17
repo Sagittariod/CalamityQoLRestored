@@ -30,6 +30,42 @@ namespace CalamityQoLRestored.Content
         public static int AnyWoodenSword, AnyHallowedHelmet, AnyHallowedPlatemail, AnyHallowedGreaves, AnyGoldCrown, LunarPickaxe, LunarHamaxe;
         public static int AnyManaFlower, AnyQuiver, AnyTombstone, AnyWings;
 
+
+        public override void AddRecipeGroups()
+        {
+            RecipeGroup evilPowderGroup = new RecipeGroup(() => "Any Evil Powder", new int[]
+            {
+                ItemID.VilePowder,
+                ItemID.ViciousPowder
+            });
+            AnyEvilPowder = RecipeGroup.RegisterGroup("AnyEvilPowder", evilPowderGroup);
+
+            RecipeGroup largeGemGroup = new RecipeGroup(() => "Any Large Gem", new int[]
+            {
+                ItemID.LargeAmber,
+                ItemID.LargeAmethyst,
+                ItemID.LargeDiamond,
+                ItemID.LargeEmerald,
+                ItemID.LargeRuby,
+                ItemID.LargeSapphire,
+                ItemID.LargeTopaz
+            });
+            AnyLargeGem = RecipeGroup.RegisterGroup("AnyLargeGem", largeGemGroup);
+
+            RecipeGroup evilFlaskGroup = new RecipeGroup(() => "Any Evil Flask", new int[]
+            {
+                ItemID.FlaskofCursedFlames,
+                ItemID.FlaskofIchor
+            });
+            AnyEvilFlask = RecipeGroup.RegisterGroup("AnyEvilFlask", evilFlaskGroup);
+
+            if (RecipeGroup.recipeGroupIDs.TryGetValue("AnyStoneBlock", out int stoneIndex))
+                AnyStoneBlock = stoneIndex;
+
+            if (RecipeGroup.recipeGroupIDs.TryGetValue("AnyCopperBar", out int copperIndex))
+                AnyCopperBar = copperIndex;        
+        }
+
         public static void HandleRecipes()
         {
             CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
@@ -122,7 +158,7 @@ namespace CalamityQoLRestored.Content
             // Guide Voodoo Doll
             Recipe.Create(ItemID.GuideVoodooDoll).
                 AddIngredient(ItemID.Leather, 2).
-                AddRecipeGroup(AnyEvilPowder, 10).
+                AddRecipeGroup("AnyEvilPowder", 10).
                 AddTile(TileID.Hellforge).
                 Register().
                 DisableDecraft();
@@ -191,8 +227,8 @@ namespace CalamityQoLRestored.Content
             // Ice Boomerang
             Recipe.Create(ItemID.IceBoomerang).
                 AddIngredient(ItemID.WoodenBoomerang).
-                AddRecipeGroup(AnyIceBlock, 20).
-                AddRecipeGroup(AnySnowBlock, 10).
+                AddRecipeGroup("AnyIceBlock", 20).
+                AddRecipeGroup("AnySnowBlock", 10).
                 AddIngredient(ItemID.Shiverthorn).
                 AddTile(TileID.Anvils).
                 Register().
@@ -365,7 +401,7 @@ namespace CalamityQoLRestored.Content
 
             // Megaphone (silence)
             Recipe.Create(ItemID.Megaphone).
-                AddRecipeGroup(AnyCobaltBar, 5).
+                AddRecipeGroup("AnyCobaltBar", 5).
                 AddIngredient(ItemID.Wire, 10).
                 AddTile(TileID.Anvils).
                 Register().
@@ -382,7 +418,7 @@ namespace CalamityQoLRestored.Content
             // Pocket Mirror (petrification)
             Recipe.Create(ItemID.PocketMirror).
                 AddIngredient(ItemID.Glass, 10).
-                AddRecipeGroup(AnyGoldBar, 8).
+                AddRecipeGroup("AnyGoldBar", 8).
                 AddIngredient(ItemID.CrystalShard, 8).
                 AddTile(TileID.Anvils).
                 Register().
