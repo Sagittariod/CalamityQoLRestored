@@ -331,7 +331,7 @@ namespace CalamityQolRestored.Content
             if (npc.type == NPCID.Harpy)
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ItemID.GiantHarpyFeather);
-                npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 80));
+                npcLoot.Add(ItemDropRule.Common(ItemID.GiantHarpyFeather, 80));
             }
 
             if (npc.type == NPCID.Hellbat)

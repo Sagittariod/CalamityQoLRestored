@@ -78,8 +78,8 @@ namespace CalamityQoLRestored.Content
                 AddIngredient(ItemID.SoulofNight, 7).
                 AddIngredient(ItemType<EssenceofSunlight>(), 5).
                 AddTile(TileID.Anvils).
-                Register().
-                AddDecraftCondition(CalamityConditions.DownedAstrumDeus);
+                AddDecraftCondition(CalamityConditions.DownedAstrumDeus).
+                Register();
             }
 
             if (config.EarlyBakidon)
@@ -88,10 +88,9 @@ namespace CalamityQoLRestored.Content
                 AddIngredient(ItemID.FallenStar, 5).
                 AddIngredient(ItemID.HellstoneBar, 5).
                 AddTile(TileID.Hellforge).
-                Register().
-                AddDecraftCondition(Condition.Hardmode);
+                AddDecraftCondition(Condition.Hardmode).
+                Register();
             }
-
 
             if (!config.VanillaItemRecipes)
                 return;
@@ -435,6 +434,15 @@ namespace CalamityQoLRestored.Content
                 if (recipe.createItem.type == ModContent.ItemType<AsgardsValor>() && config.AnkhIntoValor)
                 {
                     recipe.AddIngredient(ItemID.AnkhShield);
+                }
+
+                if (recipe.createItem.type == ModContent.ItemType<Bakidon>() && config.EarlyBakidon)
+                {
+                    recipe.AddDecraftCondition(Condition.Hardmode);
+                }
+                if (recipe.createItem.type == ModContent.ItemType<Cosmolight>() && config.EarlyCosmolight)
+                {
+                    recipe.AddDecraftCondition(CalamityConditions.DownedAstrumDeus);
                 }
             }
         }

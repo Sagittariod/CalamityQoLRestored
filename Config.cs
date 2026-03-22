@@ -23,11 +23,6 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool NPCShopChanges { get; set; }
 
-        [Label("Calamity Biome Crate Additions")]
-        [Tooltip("Reintroduces many removed items found within Calamity biome crates. Toggling may require a restart to take effect!")]
-        [DefaultValue(1)]
-        public bool CrateAdditions { get; set; }
-
         [Label("Enemy Drop Rate Boost")]
         [Tooltip("Reverts reductions to many different item drop rates. Toggling may require a restart to take effect!")]
         [DefaultValue(1)]
@@ -58,16 +53,6 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool AnglingKitsRestored { get; set; }
 
-        [Label("Reaver Shark Pickaxe Power Boost")]
-        [Tooltip("Increases Reaver Shark's pickaxe power. Toggling may require a restart to take effect!")]
-        [DefaultValue(1)]
-        public bool ReaverSharkReturns { get; set; }
-
-        [Label("Debuff Immunities in Shield Accessories")]
-        [Tooltip("Integrates Ankh Shield's effects into Asgard's Valor and its upgrades, alongside re-adding cold immunities to Ornate Shield.")]
-        [DefaultValue(1)]
-        public bool AnkhIntoValor { get; set; }
-
         [Label("Fruit Drop Rate Boost")]
         [Tooltip("Increases the chance for fruits to be dropped from most tree variants.")]
         [DefaultValue(1)]
@@ -78,6 +63,22 @@ namespace CalamityQoLRestored
         [DefaultValue(1)]
         public bool EarlyCosmolight { get; set; }
 
+        [Header("$Mods.CalamityQoLRestored.Configs.CalamityQoLRestoredConfig.ItemChangesHeader")]
+
+        [Label("Debuff Immunities in Shield Accessories")]
+        [Tooltip("Integrates Ankh Shield's effects into Asgard's Valor and its upgrades, alongside re-adding cold immunities to Ornate Shield.")]
+        [DefaultValue(0)]
+        public bool AnkhIntoValor { get; set; }
+
+        [Label("Calamity Biome Crate Additions")]
+        [Tooltip("Reintroduces many removed items found within Calamity biome crates. Toggling may require a restart to take effect!")]
+        [DefaultValue(0)]
+        public bool CrateAdditions { get; set; }
+
+        [Label("Reaver Shark Pickaxe Power Boost")]
+        [Tooltip("Increases Reaver Shark's pickaxe power. Toggling may require a restart to take effect!")]
+        [DefaultValue(0)]
+        public bool ReaverSharkReturns { get; set; }
 
         [Header("$Mods.CalamityQoLRestored.Configs.CalamityQoLRestoredConfig.NewAdditionsHeader")]
 
