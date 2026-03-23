@@ -212,50 +212,50 @@ namespace CalamityQolRestored.Content
             if (npc.type == ModContent.NPCType<Aries>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<StellarKnife>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StellarKnife>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<StellarKnife>(), 7);
             }
             else if (npc.type == ModContent.NPCType<Astraglomerate>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<HivePod>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HivePod>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<HivePod>(), 7);
             }
             else if (npc.type == ModContent.NPCType<AstralSlime>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<AbandonedSlimeStaff>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AbandonedSlimeStaff>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<AbandonedSlimeStaff>(), 7);
             }
             else if (npc.type == ModContent.NPCType<AstralachneaGround>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<AstralachneaStaff>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AstralachneaStaff>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<AstralachneaStaff>(), 7);
             }
             else if (npc.type == ModContent.NPCType<AstralachneaWall>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<AstralachneaStaff>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AstralachneaStaff>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<AstralachneaStaff>(), 7);
             }
             else if (npc.type == ModContent.NPCType<Atlas>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<TitanArm>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TitanArm>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<TitanArm>(), 7);
             }
             else if (npc.type == ModContent.NPCType<Mantis>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<AstralScythe>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AstralScythe>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<AstralScythe>(), 7);
             }
             else if (npc.type == ModContent.NPCType<Nova>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<GloriousEnd>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GloriousEnd>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<GloriousEnd>(), 7);
 
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<StellarCannon>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StellarCannon>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<StellarCannon>(), 7);
             }
             else if (npc.type == ModContent.NPCType<StellarCulex>())
             {
                 npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<StarbusterCore>());
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarbusterCore>(), 7));
+                npcLoot.AddIf(() => DownedBossSystem.downedAstrumAureus, ModContent.ItemType<StarbusterCore>(), 7);
             }
 
             if (npc.type == ModContent.NPCType<AquaticUrchin>())
