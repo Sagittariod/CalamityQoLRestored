@@ -242,13 +242,13 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft();
 
-            /* // Umbrella
+            // Umbrella
             Recipe.Create(ItemID.Umbrella).
                 AddIngredient(ItemID.Silk, 5).
                 AddRecipeGroup("AnyCopperBar", 2).
                 AddTile(TileID.Loom).
                 Register().
-                DisableDecraft(); */
+                DisableDecraft();
 
             /* // Wooden Boomerang
             Recipe.Create(ItemID.WoodenBoomerang).
@@ -348,6 +348,36 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft();
 
+            // Slime Staff
+            Recipe.Create(ItemID.SlimeStaff).
+                AddRecipeGroup(RecipeGroupID.Wood, 6).
+                AddIngredient(ItemID.Gel, 40).
+                AddTile(TileID.Anvils).
+                Register();
+
+            // Fledgling Wings
+            Recipe.Create(ItemID.CreativeWings).
+                AddIngredient(ItemType<AncientBoneDust>(), 2).
+                AddIngredient(ItemID.Cloud, 5).
+                AddIngredient(ItemID.Feather, 10).
+                AddTile(TileID.Anvils).
+                Register();
+
+            // Hand Warmer
+            Recipe.Create(ItemID.HandWarmer).
+                AddIngredient(ItemID.Silk, 10).
+                AddTile(TileID.Loom).
+                Register().
+                DisableDecraft();
+
+
+            // Hand Warmer
+            Recipe.Create(ItemID.BouncingShield).
+                AddRecipeGroup("AnyCobaltBar", 12).
+                AddIngredient(ItemID.SoulofLight, 4).
+                AddTile(TileID.Anvils).
+                Register();
+
             // Lihzahrd Power Cell
             Recipe.Create(ItemID.LihzahrdPowerCell).
                 AddIngredient(ItemID.LihzahrdBrick, 5).
@@ -381,8 +411,8 @@ namespace CalamityQoLRestored.Content
                 AddTile(TileID.CookingPots).
                 Register().
                 DisableDecraft();
-            Recipe.Create(ItemID.BloodMoonStarter).
-                AddIngredient<PiggyItem>().
+            Recipe.Create(ItemID.Bacon).
+                AddIngredient<PiggyGoldItem>().
                 AddTile(TileID.CookingPots).
                 Register().
                 DisableDecraft();
