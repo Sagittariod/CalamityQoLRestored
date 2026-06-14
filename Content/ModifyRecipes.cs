@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Accessories;
+using CalamityMod.Items.Critters;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Tools.ClimateChange;
 using CalamityMod.Systems;
@@ -366,13 +367,25 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft();
 
-            /* // Bloody Tear
+            // Bloody Tear
             Recipe.Create(ItemID.BloodMoonStarter).
                 AddIngredient<BloodOrb>(10).
                 AddRecipeGroup("AnyCopperBar", 3).
                 AddTile(TileID.Anvils).
                 Register().
-                DisableDecraft(); */
+                DisableDecraft();
+
+            // Bacon
+            Recipe.Create(ItemID.Bacon).
+                AddIngredient<PiggyItem>().
+                AddTile(TileID.CookingPots).
+                Register().
+                DisableDecraft();
+            Recipe.Create(ItemID.BloodMoonStarter).
+                AddIngredient<PiggyItem>().
+                AddTile(TileID.CookingPots).
+                Register().
+                DisableDecraft();
 
             // Trifold Map (confusion)
             Recipe.Create(ItemID.TrifoldMap).
@@ -427,20 +440,21 @@ namespace CalamityQoLRestored.Content
 
         public override void PostAddRecipes()
         {
-            CalamityQoLRestoredConfig config = ModContent.GetInstance<CalamityQoLRestoredConfig>();
+            CalamityQoLRestoredConfig config = GetInstance<CalamityQoLRestoredConfig>();
 
             foreach (Recipe recipe in Main.recipe)
             {
-                if (recipe.createItem.type == ModContent.ItemType<AsgardsValor>() && config.AnkhIntoValor)
+                if (recipe.createItem.type == ItemType<AsgardsValor>() && config.AnkhIntoValor)
                 {
                     recipe.AddIngredient(ItemID.AnkhShield);
                 }
 
-                if (recipe.createItem.type == ModContent.ItemType<Bakidon>() && config.EarlyBakidon)
+                if (recipe.createItem.type == ItemType<Bakidon>() && config.EarlyBakidon)
                 {
                     recipe.AddDecraftCondition(Condition.Hardmode);
                 }
-                if (recipe.createItem.type == ModContent.ItemType<Cosmolight>() && config.EarlyCosmolight)
+
+                if (recipe.createItem.type == ItemType<Cosmolight>() && config.EarlyCosmolight)
                 {
                     recipe.AddDecraftCondition(CalamityConditions.DownedAstrumDeus);
                 }
