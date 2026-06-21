@@ -92,5 +92,10 @@ namespace CalamityQoLRestored
         [DefaultValue(0)]
         public bool ShimmerCycles { get; set; }
 
+        [Label("Lenient Light-speed Carve")]
+        [Tooltip("Makes Nanoblack Reaper's Light-speed Carve supercrit effect able to be triggered anytime the main projectile is returning.")]
+        [DefaultValue(0)]
+        public bool NanoblackAccesibility { get; set; }
+
     }
 }

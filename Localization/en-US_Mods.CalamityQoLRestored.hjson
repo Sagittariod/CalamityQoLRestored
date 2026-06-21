@@ -85,6 +85,11 @@ Configs: {
 			Label: Shimmerable Boss Weapon Drops
 			Tooltip: Allows for non-legendary weapons dropped by a boss to be shimmered into one another. Toggling may require a restart to take effect!
 		}
+
+		NanoblackAccesibility: {
+			Label: Lenient Light-speed Carve
+			Tooltip: Makes Nanoblack Reaper's Light-speed Carve supercrit effect able to be triggered anytime the main projectile is returning.
+		}
 	}
 }
 
