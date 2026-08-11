@@ -455,7 +455,7 @@ namespace CalamityQolRestored.Content
                 RevertExpertGating(ModContent.ItemType<WarbanneroftheRighteous>());
 
             else if (npc.type == ModContent.NPCType<Providence>())
-                RevertExpertGating(ModContent.ItemType<BlazingCore>());
+                RevertExpertGating(ModContent.ItemType<DivineProvidence>());
 
             else if (npc.type == ModContent.NPCType<Signus>())
                 RevertExpertGating(ModContent.ItemType<SpectralVeil>());

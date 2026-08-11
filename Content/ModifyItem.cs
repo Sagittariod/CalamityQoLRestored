@@ -607,9 +607,8 @@ namespace CalamityQoLRestored.Content
 
             // Slime God
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<AbyssalTome>()] = ModContent.ItemType<EldritchTome>();
-            ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<EldritchTome>()] = ModContent.ItemType<CorroslimeStaff>();
-            ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<CorroslimeStaff>()] = ModContent.ItemType<CrimslimeStaff>();
-            ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<CrimslimeStaff>()] = ModContent.ItemType<OverloadedBlaster>();
+            ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<EldritchTome>()] = ModContent.ItemType<BlightedSlimeStaff>();
+            ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<BlightedSlimeStaff>()] = ModContent.ItemType<OverloadedBlaster>();
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<OverloadedBlaster>()] = ModContent.ItemType<AbyssalTome>();
 
             // Astrum Aureus
