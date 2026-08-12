@@ -233,6 +233,15 @@ namespace CalamityQoLRestored.Content
                 Register().
                 DisableDecraft();
 
+            // Fledgling Wings
+            Recipe.Create(ItemID.CreativeWings).
+                AddIngredient(ItemID.Cloud, 5).
+                AddIngredient(ItemID.Feather, 10).
+                AddIngredient<AncientBoneDust>(2).
+                AddTile(TileID.Anvils).
+                Register().
+                DisableDecraft();
+
             // DPS Meter
             Recipe.Create(ItemID.DPSMeter).
                 AddIngredient(ItemID.Wire, 10).

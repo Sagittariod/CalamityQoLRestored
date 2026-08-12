@@ -776,6 +776,27 @@ namespace CalamityQoLRestored.Content
             // Signus
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<CosmicKunai>()] = ModContent.ItemType<Cosmilamp>();
             ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<Cosmilamp>()] = ModContent.ItemType<CosmicKunai>();
+
+
+
+            // -- Other Mod Drops --
+            if (ModLoader.TryGetMod("CalamityHunt", out Mod otherMod))
+            {
+                if (otherMod.TryFind<ModItem>("Parasanguine", out ModItem firstWeapon) && otherMod.TryFind<ModItem>("SludgeShaker", out ModItem secondWeapon) && otherMod.TryFind<ModItem>("CrystalGauntlets", out ModItem thirdWeapon) && otherMod.TryFind<ModItem>("SlimeCane", out ModItem fourthWeapon) && otherMod.TryFind<ModItem>("CometKunai", out ModItem fifthWeapon))
+                {
+                    ItemID.Sets.ShimmerTransformToItem[firstWeapon.Type] = secondWeapon.Type;
+                    ItemID.Sets.ShimmerTransformToItem[secondWeapon.Type] = thirdWeapon.Type;
+                    ItemID.Sets.ShimmerTransformToItem[thirdWeapon.Type] = fourthWeapon.Type;
+                    ItemID.Sets.ShimmerTransformToItem[fourthWeapon.Type] = fifthWeapon.Type;
+                    ItemID.Sets.ShimmerTransformToItem[fifthWeapon.Type] = firstWeapon.Type;
+
+                }
+            }
+            else
+                Console.WriteLine("sdfdffdgdfgfd");
+
+
+
         }
 
         // Effectively directly from Calamity's source. Most are left unused for now, but are set in the instance that they are needed for later.
